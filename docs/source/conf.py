@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'DM'
+project = 'AQL'
 copyright = '2024, John Aoga'
 author = 'John Aoga'
 
