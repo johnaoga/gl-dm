@@ -1,42 +1,40 @@
-	.. _intro:
-
-
 .. _intro:
 
 *********************
 Organisation du cours
 *********************
 
-L'objectif de ce cours est d'aborder les concepts fondamentaux du data mining et de voir comment extraire des connaissances utiles à partir de données en appliquant des algorithmes et méthodologies standardisées.
+L'objectif de ce cours est de maîtriser les concepts et techniques fondamentaux du data mining, de comprendre et d'appliquer les processus de découverte de connaissances dans les données, et de mettre en œuvre des algorithmes de fouille de données pour résoudre des problèmes réels dans divers domaines.
 
-À la fin de ce cours l'étudiant.e doit être capable de :
+À la fin de ce cours, l'étudiant.e doit être capable de :
 
-* Différencier les notions d'IA, Data Science, Machine Learning, Deep Learning et Data Mining
+* Différencier les notions liées à l'IA, la science des données, l'apprentissage automatique, le data mining et la visualisation
 * Expliquer et appliquer le processus CRISP-DM (Cross-Industry Standard Process for Data Mining)
 * Réaliser une analyse descriptive complète d'un jeu de données
+* Identifier les éléments clés du data mining et ses domaines d'application
+* Choisir et appliquer les algorithmes de data mining adaptés à des cas d'usage concrets
 * Implémenter des algorithmes de fouille d'itemsets fréquents (Apriori, Eclat, FP-Growth)
 * Implémenter des algorithmes de fouille de motifs séquentiels (PrefixSpan)
 * Implémenter des algorithmes de clustering (k-means, DBSCAN, hiérarchique)
-* Générer et interpréter des règles d'association
+* Générer et interpréter des règles d'association avec leurs mesures (support, confiance, lift)
 * Lire, comprendre et présenter un article scientifique en data mining
-* Appliquer le data mining à des problèmes réels dans divers domaines (télécoms, tourisme, santé, etc.)
-* Présenter de manière structurée et argumentée une analyse de données et ses résultats
-* Collaborer efficacement dans des projets de fouille de données
-* Appliquer une démarche critique et méthodique dans l'analyse de données
+* Présenter de manière structurée une analyse de données
+* Travailler en équipe sur des projets de fouille de données
+* Adopter une approche critique et méthodique pour l'analyse de données
 
 Pédagogie
 =======================================
 
-La pédagogie utilisée est mixte et basée sur l'apprentissage par projet. Nous alternerons des :
+La pédagogie utilisée est mixte et basée sur l'apprentissage par projet. Nous alternerons :
 
-* Cours magistraux pour la clarification des concepts et la présentation des algorithmes
-* Séances de travaux pratiques d'implémentation d'algorithmes (Apriori, PrefixSpan, clustering)
-* Travaux pratiques d'analyse descriptive de jeux de données
-* Projet final intégrateur appliquant le processus CRISP-DM complet
-* Exposés pratiques de présentation d'articles scientifiques
-* Mises en situation pour simuler des contextes professionnels réels
+* Des cours magistraux pour la clarification des concepts et la présentation des algorithmes
+* Des travaux pratiques d'implémentation d'algorithmes (Apriori, PrefixSpan, clustering)
+* Des travaux pratiques d'analyse descriptive et exploratoire de jeux de données
+* Des exposés de groupe sur des articles scientifiques en data mining
+* Un projet final intégrateur appliquant le processus CRISP-DM complet sur un cas réel
+* Des mises en situation pour simuler des contextes professionnels réels
 
-Par conséquent, les étudiants doivent impérativement travailler régulièrement pour maîtriser progressivement les concepts théoriques et développer leurs compétences pratiques en implémentation et analyse.
+Par conséquent, les étudiants doivent impérativement travailler régulièrement au jour le jour pour graduellement comprendre les concepts théoriques et développer leurs compétences pratiques en implémentation et analyse de données.
 
 Répartition du cours
 =======================================
@@ -48,26 +46,67 @@ Le cours est organisé en six modules principaux :
 * :doc:`Module 3 <../part3/index>`: Fouille d'itemsets fréquents et règles d'association
 * :doc:`Module 4 <../part4/index>`: Fouille de motifs séquentiels
 * :doc:`Module 5 <../part5/index>`: Clustering et segmentation de données
-* :doc:`Module 6 <../part6/index>`: Projet et présentation scientifique
+* :doc:`Module 6 <../part6/index>`: Projet intégrateur et présentation scientifique
 
-Evaluation
+Évaluation
 =======================================
 
-Travaux pratiques (TP1, TP2, TP2bis, TP3) + Exposé pratique + Projet final en équipe + Examen écrit.
+L'évaluation du cours se compose de deux éléments principaux :
 
-Note finale: (Moyenne des TP * 0.40) + (Exposé * 0.15) + (Projet final * 0.30) + (Examen * 0.15)
+**1. Travaux pratiques individuels ou en binôme (40%)**
+
+Les travaux pratiques comprennent :
+
+* **TP1** : Analyse descriptive d'un jeu de données
+* **TP2** : Implémentation de l'algorithme Apriori
+* **TP2bis** : Implémentation de PrefixSpan
+* **TP3** : Implémentation d'un algorithme de clustering
+
+Chaque TP évalue :
+
+* La réalisation d'analyses descriptives complètes avec statistiques et visualisations
+* L'implémentation correcte et optimisée des algorithmes de data mining
+* La comparaison des performances des algorithmes avec métriques appropriées
+* La documentation et la justification des choix techniques dans un rapport structuré
+
+**2. Projet final en équipe (60%)**
+
+Le projet final comprend :
+
+* Application complète du processus CRISP-DM sur un cas réel
+* Implémentation d'une chaîne complète de data mining (prétraitement, modélisation, évaluation)
+* Choix et justification des algorithmes adaptés au problème
+* Analyse approfondie et interprétation des résultats avec insights actionnables
+* Rédaction d'un rapport technique et analytique (maximum 10 pages)
+* Présentation orale et démonstration du projet
+* Collaboration efficace en équipe avec gestion de projet
+
+**3. Exposé pratique (inclus dans l'évaluation globale)**
+
+* Présentation d'un article scientifique en data mining
+* Démonstration de la compréhension des concepts et méthodologies
+* Capacité à synthétiser et communiquer des résultats de recherche
+
+**Note finale = 40% Travaux Pratiques + 60% Projet Final (incluant l'exposé)**
+
+*(Un examen écrit peut être ajouté selon les besoins pédagogiques)*
 
 Contact et communication
 =======================================
 
-Les communications se ferons par whatsapp et par mail.
+Les communications se feront par mail.
 
-Tel: +229 97 999 277
-Mail: `John Aoga <johnaoga@gmail.com>`_.
+:Email: `John Aoga <johnaoga@gmail.com>`_
 
 Cours Open-Source
 =======================================
 
-Les supports de cours et ressources sont partagés.
+Les sources de ce site web sont open-source et disponibles sur `GitHub <https://github.com/johnaoga/gl-dm>`_.
+N'hésitez pas à faire des pull requests si vous voyez des erreurs ou des éléments à corriger.
 
-Les datasets utilisés proviennent de sources ouvertes (UCI, Kaggle, etc.) et sont utilisés à des fins pédagogiques.
+Les datasets utilisés proviennent de sources ouvertes (UCI, Kaggle, etc.) et sont utilisés à des fins pédagogiques uniquement.
+
+La licence utilisée est Creative Commons Attribution-ShareAlike 4.0 International License :
+
+.. image:: https://i.creativecommons.org/l/by-sa/4.0/88x31.png
+    :alt: CC-BY-SA
