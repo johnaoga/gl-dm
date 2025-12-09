@@ -261,16 +261,14 @@ Avantages des séquences fermées :
 
 .. code-block:: text
 
-Algorithme | Approche         | Avantages                  | Inconvénients
------------|------------------|----------------------------|------------------
-PrefixSpan | Pattern-growth   | Pas de candidats           | Récursion profonde
-           | Projection       | Un seul scan initial       | Implémentation complexe
-           |                  | Très efficace              |
------------|------------------|----------------------------|------------------
-CloSpan    | Closed patterns  | Résultats compacts         | Vérification fermeture
-           | Pattern-growth   | Moins de redondance        | Plus complexe
-
-
+   Algorithme | Approche         | Avantages                  | Inconvénients
+   -----------|------------------|----------------------------|------------------
+   PrefixSpan | Pattern-growth   | Pas de candidats           | Récursion profonde
+              | Projection       | Un seul scan initial       | Implémentation complexe
+              |                  | Très efficace              |
+   -----------|------------------|----------------------------|------------------
+   CloSpan    | Closed patterns  | Résultats compacts         | Vérification fermeture
+              | Pattern-growth   | Moins de redondance        | Plus complexe
 
 
 
