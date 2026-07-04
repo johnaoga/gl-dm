@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapitre 2 : Analyse de données &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapitre 3 : Algorithmes et complexité" href="chap3.html" />
+    <link rel="prev" title="Chapitre 1 : Introduction au data mining" href="chap1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/pigier.html">Parcours PIGIER (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/ifri.html">Parcours IFRI (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 1 | Préliminaires</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#objectifs">Objectifs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#organisation">Organisation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="chap1.html">Chapitre 1 : Introduction au data mining</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Chapitre 2 : Analyse de données</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#objectifs">Objectifs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#le-processus-crisp-dm">1. Le processus CRISP-DM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comprendre-les-donnees">2. Comprendre les données</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analyse-descriptive">3. Analyse descriptive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cas-pratique-iris">4. Cas pratique : Iris</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nettoyage-et-pretraitement">5. Nettoyage et prétraitement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="chap3.html">Chapitre 3 : Algorithmes et complexité</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chap4.html">Chapitre 4 : Outils d’implémentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part4/index.html">Partie 4 | Projet &amp; TPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 1 | Préliminaires</a></li>
+      <li class="breadcrumb-item active">Chapitre 2 : Analyse de données</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part1/chap2.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chapitre-2-analyse-de-donnees">
+<span id="part1-chap2"></span><h1>Chapitre 2 : Analyse de données<a class="headerlink" href="#chapitre-2-analyse-de-donnees" title="Link to this heading"></a></h1>
+<p>Avant de fouiller des données, il faut les <strong>comprendre</strong>. Ce chapitre présente le
+processus <strong>CRISP-DM</strong> et l’<strong>analyse descriptive</strong> (univariée et multivariée).</p>
+<section id="objectifs">
+<h2>Objectifs<a class="headerlink" href="#objectifs" title="Link to this heading"></a></h2>
+<p>À la fin de ce chapitre, vous devez pouvoir :</p>
+<ul class="simple">
+<li><p>Décrire les étapes du processus <strong>CRISP-DM</strong></p></li>
+<li><p>Comprendre les éléments constitutifs d’un jeu de données (variables, types, taille)</p></li>
+<li><p>Mener une <strong>analyse descriptive</strong> univariée et multivariée</p></li>
+<li><p>Identifier les besoins de <strong>nettoyage / prétraitement</strong> des données</p></li>
+</ul>
+</section>
+<section id="le-processus-crisp-dm">
+<h2>1. Le processus CRISP-DM<a class="headerlink" href="#le-processus-crisp-dm" title="Link to this heading"></a></h2>
+<p><strong>CRISP-DM</strong> (<em>Cross-Industry Standard Process for Data Mining</em>) est une
+méthodologie (cycle de vie) qui décrit les étapes d’un projet de données, de
+l’objectif jusqu’au déploiement de la solution de décision :</p>
+<ol class="arabic simple">
+<li><p><strong>Comprendre le business</strong> (l’objectif, la décision visée) ;</p></li>
+<li><p><strong>Comprendre les données</strong> ;</p></li>
+<li><p><strong>Préparer les données</strong> (nettoyage, transformation) ;</p></li>
+<li><p><strong>Modéliser</strong> le problème (choisir ou écrire les algorithmes adaptés) ;</p></li>
+<li><p><strong>Évaluer</strong> ;</p></li>
+<li><p><strong>Déployer</strong>.</p></li>
+</ol>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/crisp.png"><img alt="Le cycle CRISP-DM" src="../_images/crisp.png" style="width: 65%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Le cycle CRISP-DM (itératif).</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="comprendre-les-donnees">
+<h2>2. Comprendre les données<a class="headerlink" href="#comprendre-les-donnees" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Variable</strong> : une mesure / caractéristique du problème. Pour chacune : sa
+<strong>description</strong>, son <strong>type</strong> (continue/quantitative ou discrète/qualitative),
+son <strong>unité</strong>, ses <strong>modalités</strong>.</p></li>
+<li><p><strong>Taille</strong> de la base : nombre de lignes, de colonnes.</p></li>
+<li><p>Sources de datasets : <a class="reference external" href="https://archive.ics.uci.edu/">UCI ML Repository</a>, etc.</p></li>
+</ul>
+</section>
+<section id="analyse-descriptive">
+<h2>3. Analyse descriptive<a class="headerlink" href="#analyse-descriptive" title="Link to this heading"></a></h2>
+<section id="univariee-variable-par-variable">
+<h3>3.1. Univariée (variable par variable)<a class="headerlink" href="#univariee-variable-par-variable" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Variable <strong>continue</strong> : min, max, moyenne, médiane, quantiles, écart-type.</p></li>
+<li><p>Variable <strong>discrète</strong> : compter les <strong>modalités</strong>.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># En R, un résumé rapide :</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">iris</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multivariee-relations-entre-variables">
+<h3>3.2. Multivariée (relations entre variables)<a class="headerlink" href="#multivariee-relations-entre-variables" title="Link to this heading"></a></h3>
+<ul>
+<li><p><strong>Corrélations</strong> entre paires de variables.</p></li>
+<li><p><strong>Visualisations</strong> :</p>
+<ul>
+<li><p><strong>Histogramme / densité</strong> → évaluer la <strong>distribution</strong> (suit-elle une loi normale ?).</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/ad-histogramme.png"><img alt="Histogramme / densité" src="../_images/ad-histogramme.png" style="width: 60%;" />
+</a>
+</figure>
+</li>
+<li><p><strong>Boxplot / violin</strong> → repérer les <strong>valeurs aberrantes</strong>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/ad-boxplot.png"><img alt="Boxplot / violin" src="../_images/ad-boxplot.png" style="width: 60%;" />
+</a>
+</figure>
+</li>
+<li><p><strong>Scatterplot</strong> → repérer des <strong>tendances</strong> :</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/ad-scatterplot.png"><img alt="Scatterplot" src="../_images/ad-scatterplot.png" style="width: 60%;" />
+</a>
+</figure>
+<ul class="simple">
+<li><p>2 variables (x, y) : tendance générale (linéaire, non linéaire, aléatoire, convexe/concave) ;</p></li>
+<li><p>3 variables (x, y + couleur/forme/taille) : groupes (clusters), séparabilité ;</p></li>
+<li><p>4–5 variables : tendances spécifiques (couleur + forme + taille).</p></li>
+</ul>
+</li>
+<li><p>Des représentations plus avancées (coordonnées parallèles, courbes d’Andrews, …).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="cas-pratique-iris">
+<h2>4. Cas pratique : Iris<a class="headerlink" href="#cas-pratique-iris" title="Link to this heading"></a></h2>
+<p>Le jeu <strong>Iris</strong> comporte 5 variables (longueur/largeur de sépale et de pétale +
+espèce). L’objectif : prédire l’espèce à partir des 4 mesures.</p>
+<div class="math notranslate nohighlight">
+\[\text{espèce} = f(\text{sepal\_length}, \text{petal\_length}, \text{sepal\_width}, \text{petal\_width})\]</div>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/iris.png"><img alt="Le jeu de données Iris" src="../_images/iris.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Analyse exploratoire du jeu Iris.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="nettoyage-et-pretraitement">
+<h2>5. Nettoyage et prétraitement<a class="headerlink" href="#nettoyage-et-pretraitement" title="Link to this heading"></a></h2>
+<p>Avant la modélisation (CRISP étape 3), on <strong>prépare</strong> les données : traiter les
+valeurs manquantes et aberrantes, supprimer les doublons, corriger les
+incohérences, encoder/normaliser/standardiser, créer de nouvelles variables si
+pertinent.</p>
+</section>
+<section id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Link to this heading"></a></h2>
+<p>Voir le <a class="reference internal" href="../part4/index.html"><span class="doc">TP analyse descriptive</span></a> : récupérez un jeu de
+données, menez l’analyse descriptive complète et tirez des conclusions à la lumière
+d’un sujet d’orientation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chap1.html" class="btn btn-neutral float-left" title="Chapitre 1 : Introduction au data mining" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap3.html" class="btn btn-neutral float-right" title="Chapitre 3 : Algorithmes et complexité" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

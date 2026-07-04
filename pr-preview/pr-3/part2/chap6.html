@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapitre 6 : Frequent Itemset Mining &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapitre 7 : Sequential Pattern Mining" href="chap7.html" />
+    <link rel="prev" title="Chapitre 5 : Clustering" href="chap5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/pigier.html">Parcours PIGIER (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/ifri.html">Parcours IFRI (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 2 | Algorithmes de base</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#objectifs">Objectifs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#organisation">Organisation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="chap5.html">Chapitre 5 : Clustering</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Chapitre 6 : Frequent Itemset Mining</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#objectifs">Objectifs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#motivation-le-panier-du-supermarche">1. Motivation : le panier du supermarché</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#le-probleme-de-fim">2. Le problème de FIM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resolution">3. Résolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementations">4. Implémentations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regles-d-association">5. Règles d’association</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#patterns-fermes-et-maximaux">6. Patterns fermés et maximaux</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exercice">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="chap7.html">Chapitre 7 : Sequential Pattern Mining</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part4/index.html">Partie 4 | Projet &amp; TPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 2 | Algorithmes de base</a></li>
+      <li class="breadcrumb-item active">Chapitre 6 : Frequent Itemset Mining</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part2/chap6.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chapitre-6-frequent-itemset-mining">
+<span id="part2-chap6"></span><h1>Chapitre 6 : Frequent Itemset Mining<a class="headerlink" href="#chapitre-6-frequent-itemset-mining" title="Link to this heading"></a></h1>
+<p>Le <strong>Frequent Itemset Mining</strong> (FIM) cherche les <strong>combinaisons d’items fréquentes</strong>
+dans une base de transactions, puis en dérive des <strong>règles d’association</strong>.</p>
+<section id="objectifs">
+<h2>Objectifs<a class="headerlink" href="#objectifs" title="Link to this heading"></a></h2>
+<p>À la fin de ce chapitre, vous devez pouvoir :</p>
+<ul class="simple">
+<li><p>Formaliser le problème de FIM (couverture, support, seuil)</p></li>
+<li><p>Comprendre la résolution (lattice, parcours, propriété <strong>a priori</strong>)</p></li>
+<li><p>Implémenter une approche naïve → heuristique → a priori</p></li>
+<li><p>Générer des <strong>règles d’association</strong> (confiance, lift)</p></li>
+<li><p>Distinguer patterns <strong>fermés</strong> et <strong>maximaux</strong></p></li>
+</ul>
+</section>
+<section id="motivation-le-panier-du-supermarche">
+<h2>1. Motivation : le panier du supermarché<a class="headerlink" href="#motivation-le-panier-du-supermarche" title="Link to this heading"></a></h2>
+<p>Comprendre l’<strong>habitude des clients</strong> (fréquence d’achat) permet : la <strong>gestion des
+stocks</strong>, la <strong>recommandation</strong> (« ceux qui achètent X achètent aussi Y »), et le
+ciblage des <strong>promotions</strong>.</p>
+<p>On considère le panier d’un client <strong>sans doublons ni prix</strong> ⇒ ce sont des
+<strong>ensembles</strong> ⇒ on peut faire du <strong>Frequent Itemset Mining</strong>.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/fim.png"><img alt="Motifs fréquents dans les paniers" src="../_images/fim.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Découvrir les combinaisons d’achats fréquentes.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p><strong>Base de transactions (TDB)</strong> — l’ensemble des paniers (panier = transaction) :</p>
+<ul class="simple">
+<li><p><strong>horizontale</strong> : chaque ligne = le panier d’un client ;</p></li>
+<li><p><strong>verticale</strong> : chaque ligne = les clients ayant acheté un produit donné ;</p></li>
+<li><p><strong>dense/éparse</strong> : lignes = clients, colonnes = produits, cellule (i, j) = 1 si le
+produit <em>i</em> est acheté par le client <em>j</em>, sinon 0.</p></li>
+</ul>
+</section>
+<section id="le-probleme-de-fim">
+<h2>2. Le problème de FIM<a class="headerlink" href="#le-probleme-de-fim" title="Link to this heading"></a></h2>
+<p>Soit un alphabet <span class="math notranslate nohighlight">\(\Sigma\)</span> (produits disponibles), une transaction
+<span class="math notranslate nohighlight">\(T \subseteq \Sigma\)</span>, une base <span class="math notranslate nohighlight">\(TDB\)</span>, et un seuil <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<ul>
+<li><p><strong>Couverture</strong> : <code class="docutils literal notranslate"><span class="pre">cover(P,</span> <span class="pre">TDB)</span></code> = les clients ayant acheté la combinaison P.</p>
+<div class="math notranslate nohighlight">
+\[\text{cover}(P, TDB) = \{\, tid_i : T_i \in TDB \ \text{et}\ P \subseteq T_i \,\}\]</div>
+</li>
+<li><p><strong>Support</strong> : le nombre de clients ayant acheté P.</p>
+<div class="math notranslate nohighlight">
+\[\text{support}(P, TDB) = |\text{cover}(P, TDB)|\]</div>
+</li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title">Problème de FIM</p>
+<p>Trouver <strong>toutes</strong> les combinaisons <span class="math notranslate nohighlight">\(P\)</span> telles que
+<span class="math notranslate nohighlight">\(\text{support}(P, TDB) \ge \theta\)</span>.</p>
+</div>
+</section>
+<section id="resolution">
+<h2>3. Résolution<a class="headerlink" href="#resolution" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Énumérer les possibilités ⇒ le <strong>treillis</strong> (<em>lattice</em>), niveau par niveau —
+il y a <span class="math notranslate nohighlight">\(2^{|\Sigma|}\)</span> possibilités (16 pour 4 items).</p></li>
+<li><p>Calculer <strong>efficacement</strong> le support de chaque pattern.</p></li>
+<li><p>Trouver un <strong>parcours optimal</strong>.</p></li>
+</ol>
+</section>
+<section id="implementations">
+<h2>4. Implémentations<a class="headerlink" href="#implementations" title="Link to this heading"></a></h2>
+<p>On veut <code class="docutils literal notranslate"><span class="pre">fim(alphabet,</span> <span class="pre">TDB,</span> <span class="pre">theta)</span></code> qui renvoie la liste des patterns fréquents.</p>
+<p><strong>(a) Approche naïve</strong> — DFS branchant sur tous les éléments :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">P</span> <span class="o">|</span> <span class="p">{</span><span class="n">e</span><span class="p">},</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>(b) Approche heuristique</strong> — ordre virtuel : ne brancher que sur les <strong>successeurs</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">successeur</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">alphabet</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>    <span class="c1"># éléments après le dernier ajouté</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">successeur</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+        <span class="n">dfs</span><span class="p">(</span><span class="n">P</span> <span class="o">+</span> <span class="p">[</span><span class="n">e</span><span class="p">],</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>(c) Approche A priori</strong> — heuristique + <strong>antimonotonicité</strong> :</p>
+<div class="tip admonition">
+<p class="admonition-title">Propriété a priori (antimonotonicité)</p>
+<ul class="simple">
+<li><p>Si un pattern est fréquent, <strong>tous ses sous-ensembles</strong> le sont aussi.</p></li>
+<li><p>Si un pattern n’est <strong>pas</strong> fréquent, <strong>aucun</strong> de ses sur-ensembles ne l’est
+(donc on <strong>élague</strong> la branche).</p></li>
+</ul>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">successeur</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+        <span class="n">cand</span> <span class="o">=</span> <span class="n">P</span> <span class="o">+</span> <span class="p">[</span><span class="n">e</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">support</span><span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">TDB</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">theta</span><span class="p">:</span>    <span class="c1"># élagage a priori</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">cand</span><span class="p">,</span> <span class="n">TDB</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>(d) Approches avancées</strong> (<a class="reference internal" href="../part3/index.html"><span class="doc">Partie 3</span></a>) :</p>
+<ul class="simple">
+<li><p><strong>Eclat</strong> : TDB <strong>verticale</strong> + a priori + intersections d’ensembles intelligentes ;</p></li>
+<li><p><strong>FP-Growth</strong> : TDB <strong>horizontale</strong> + a priori + <strong>FP-tree</strong> pour évaluer le support ;</p></li>
+<li><p><strong>LCMv3</strong> : encore plus d’optimisations (parmi les plus rapides).</p></li>
+</ul>
+<p>D’autres variantes prennent en compte d’autres paramètres : <strong>high-utility mining</strong>
+(prix + quantité), <strong>closed/max mining</strong> (forme compressée, avec ou sans perte).</p>
+</section>
+<section id="regles-d-association">
+<h2>5. Règles d’association<a class="headerlink" href="#regles-d-association" title="Link to this heading"></a></h2>
+<p>Trouver les patterns est utile ; en <strong>déduire des règles</strong> l’est davantage. Une
+<strong>règle</strong> <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span> (X, Y des patterns) exprime que <em>Y</em> a des chances
+d’arriver sachant que <em>X</em> est arrivé.</p>
+<div class="math notranslate nohighlight">
+\[\text{confiance}(X \rightarrow Y, TDB) = \frac{\text{support}(X \cup Y)}{\text{support}(X)}\]</div>
+<p>C’est une <strong>probabilité conditionnelle</strong>. Ex. :
+<span class="math notranslate nohighlight">\(\text{confiance}(\{mangue, orange\} \rightarrow \{citron\}) = 75\%\)</span> signifie
+que 75 % des clients achetant mangue <strong>et</strong> orange achètent aussi du citron.</p>
+<p>Autre métrique utile, le <strong>lift</strong> (indépendance si = 1) :</p>
+<div class="math notranslate nohighlight">
+\[\text{lift}(X \rightarrow Y, TDB) = \frac{\text{support}(X \cup Y)}{\text{support}(X)\,\text{support}(Y)}\]</div>
+<div class="important admonition">
+<p class="admonition-title">Problème des règles d’association</p>
+<p>Trouver <strong>toutes</strong> les règles <span class="math notranslate nohighlight">\(X \rightarrow Y\)</span> dont les patterns sont
+<strong>fréquents</strong> (support ≥ <span class="math notranslate nohighlight">\(\theta\)</span>) et la <strong>confiance</strong> ≥ un seuil
+<span class="math notranslate nohighlight">\(\beta\)</span>.</p>
+</div>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/regles-association.png"><img alt="Règles d'association à partir des patterns fréquents" src="../_images/regles-association.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Des patterns fréquents aux règles d’association.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="patterns-fermes-et-maximaux">
+<h2>6. Patterns fermés et maximaux<a class="headerlink" href="#patterns-fermes-et-maximaux" title="Link to this heading"></a></h2>
+<p>Les patterns fréquents sont souvent <strong>trop nombreux</strong> : on les <strong>compresse</strong>.</p>
+<ul>
+<li><p><strong>Pattern fermé</strong> : aucun <strong>sur-ensemble</strong> n’a le <strong>même support</strong>.</p>
+<div class="math notranslate nohighlight">
+\[P \text{ fermé} \iff \nexists\, P' \supset P : \text{support}(P') = \text{support}(P)\]</div>
+<p>⇒ <strong>compression SANS perte</strong> (on retrouve tous les fréquents et leurs supports).</p>
+</li>
+<li><p><strong>Pattern maximal</strong> : aucun sur-ensemble n’est fréquent
+(<span class="math notranslate nohighlight">\(\nexists\, P' \supset P\)</span> fréquent).</p>
+<p>⇒ <strong>compression AVEC perte</strong> (on retrouve les fréquents mais pas tous leurs supports).</p>
+</li>
+</ul>
+</section>
+<section id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Link to this heading"></a></h2>
+<p>Voir le <a class="reference internal" href="../part4/index.html"><span class="doc">TP Apriori</span></a> : implémentez une fonction qui reçoit une
+TDB et un <span class="math notranslate nohighlight">\(\theta\)</span> et renvoie les patterns fréquents (indice Python :
+<code class="docutils literal notranslate"><span class="pre">itertools</span></code>, <code class="docutils literal notranslate"><span class="pre">set.issubset</span></code>).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chap5.html" class="btn btn-neutral float-left" title="Chapitre 5 : Clustering" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="chap7.html" class="btn btn-neutral float-right" title="Chapitre 7 : Sequential Pattern Mining" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

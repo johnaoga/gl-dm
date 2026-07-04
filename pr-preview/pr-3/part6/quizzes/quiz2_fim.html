@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz 2 : Frequent Itemset Mining &amp; règles &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Quiz 3 : Clustering &amp; Sequential Pattern Mining" href="quiz3_clustering_spm.html" />
+    <link rel="prev" title="Quiz 1 : Introduction &amp; analyse de données" href="quiz1_intro_dm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../parcours/pigier.html">Parcours PIGIER (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parcours/ifri.html">Parcours IFRI (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part4/index.html">Partie 4 | Projet &amp; TPs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">QCM - Questionnaires d’auto-évaluation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#quizzes-disponibles">Quizzes disponibles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quiz1_intro_dm.html">Quiz 1 : Introduction &amp; analyse de données</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quiz 2 : Frequent Itemset Mining &amp; règles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quiz3_clustering_spm.html">Quiz 3 : Clustering &amp; Sequential Pattern Mining</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+      <li class="breadcrumb-item active">Quiz 2 : Frequent Itemset Mining &amp; règles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/part6/quizzes/quiz2_fim.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quiz-2-frequent-itemset-mining-regles">
+<h1>Quiz 2 : Frequent Itemset Mining &amp; règles<a class="headerlink" href="#quiz-2-frequent-itemset-mining-regles" title="Link to this heading"></a></h1>
+<div class="quiz-container" id="quiz-quiz2_fim">
+<form id="quiz-form-quiz2_fim" onsubmit="return false;">
+<div class="quiz-question" data-qid="quiz2_fim_0"> <p class="question-text"><strong>Q1.</strong> Le <strong>support</strong> d'un pattern P, c'est…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_0" value="0" /> <span>le nombre de produits dans P</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_0" value="1" /> <span>le nombre de transactions contenant P (taille de cover)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_0" value="2" /> <span>le prix de P</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_0" value="3" /> <span>la confiance de P</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_1"> <p class="question-text"><strong>Q2.</strong> Le problème de FIM : trouver tous les P tels que…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_1" value="0" /> <span>support(P) ≤ θ</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_1" value="1" /> <span>support(P) ≥ θ</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_1" value="2" /> <span>confiance ≥ β</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_1" value="3" /> <span>P est maximal</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_2"> <p class="question-text"><strong>Q3.</strong> Antimonotonicité (a priori) : si P n'est <strong>pas</strong> fréquent, alors…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_2" value="0" /> <span>ses sous-ensembles ne sont pas fréquents</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_2" value="1" /> <span>aucun de ses sur-ensembles n&#x27;est fréquent</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_2" value="2" /> <span>tous ses sur-ensembles sont fréquents</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_2" value="3" /> <span>on ne peut rien conclure</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_3"> <p class="question-text"><strong>Q4.</strong> La <strong>confiance</strong> de X → Y vaut…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_3" value="0" /> <span>support(X∪Y) / support(X)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_3" value="1" /> <span>support(X) / support(Y)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_3" value="2" /> <span>support(X∪Y) / support(Y)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_3" value="3" /> <span>support(X) × support(Y)</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_4"> <p class="question-text"><strong>Q5.</strong> Un <strong>lift</strong> égal à 1 signifie…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_4" value="0" /> <span>une forte dépendance</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_4" value="1" /> <span>l&#x27;indépendance entre X et Y</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_4" value="2" /> <span>une règle impossible</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_4" value="3" /> <span>que X ⊂ Y</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_5"> <p class="question-text"><strong>Q6.</strong> Un pattern est <strong>fermé</strong> si…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_5" value="0" /> <span>aucun de ses sous-ensembles n&#x27;est fréquent</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_5" value="1" /> <span>aucun sur-ensemble n&#x27;a le même support</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_5" value="2" /> <span>aucun sur-ensemble n&#x27;est fréquent</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_5" value="3" /> <span>son support est nul</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_6"> <p class="question-text"><strong>Q7.</strong> Les patterns <strong>maximaux</strong> offrent une compression…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_6" value="0" /> <span>sans perte</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_6" value="1" /> <span>avec perte</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_6" value="2" /> <span>nulle</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_6" value="3" /> <span>inversée</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_7"> <p class="question-text"><strong>Q8.</strong> Eclat s'appuie sur une base de transactions…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_7" value="0" /> <span>horizontale</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_7" value="1" /> <span>verticale</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_7" value="2" /> <span>dense uniquement</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_7" value="3" /> <span>inexistante</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_8"> <p class="question-text"><strong>Q9.</strong> FP-Growth a pour particularité d'éviter…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_8" value="0" /> <span>la génération de candidats</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_8" value="1" /> <span>les transactions</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_8" value="2" /> <span>le calcul du support</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz2_fim_8" value="3" /> <span>l&#x27;arbre</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz2_fim_9"> <p class="question-text"><strong>Q10.</strong> Pour un alphabet de <strong>3</strong> items, combien de combinaisons (2^n) ?</p> <input type="number" step="any" name="qquiz2_fim_9" class="quiz-input" placeholder="Votre réponse..." /> </div>
+</form>
+<div class="quiz-actions">
+<button type="button" class="quiz-btn quiz-btn-check" onclick="checkQuiz('quiz2_fim')">✓ Vérifier mes réponses</button>
+<button type="button" class="quiz-btn quiz-btn-reset" onclick="resetQuiz('quiz2_fim')">↺ Recommencer</button>
+</div>
+<div id="result-quiz2_fim" class="quiz-result"></div>
+<div id="explanations-quiz2_fim" class="quiz-explanations"></div>
+</div>
+<script>
+if (typeof window.quizData === 'undefined') window.quizData = {};
+window.quizData['quiz2_fim'] = {"questions": [{"id": "quiz2_fim_0", "type": "single", "answer": 1, "explanation": "support(P) = |cover(P)| = nombre de transactions contenant P."}, {"id": "quiz2_fim_1", "type": "single", "answer": 1, "explanation": "FIM : tous les patterns dont le support atteint le seuil θ."}, {"id": "quiz2_fim_2", "type": "single", "answer": 1, "explanation": "Si P n'est pas fréquent, aucun sur-ensemble ne l'est ⇒ on élague la branche."}, {"id": "quiz2_fim_3", "type": "single", "answer": 0, "explanation": "confiance(X→Y) = support(X∪Y) / support(X) (probabilité conditionnelle)."}, {"id": "quiz2_fim_4", "type": "single", "answer": 1, "explanation": "lift = 1 ⇒ indépendance ; > 1 ⇒ corrélation positive ; < 1 ⇒ négative."}, {"id": "quiz2_fim_5", "type": "single", "answer": 1, "explanation": "Fermé : pas de sur-ensemble de même support ⇒ compression SANS perte."}, {"id": "quiz2_fim_6", "type": "single", "answer": 1, "explanation": "Maximal = pas de sur-ensemble fréquent ⇒ compression AVEC perte (supports non récupérables)."}, {"id": "quiz2_fim_7", "type": "single", "answer": 1, "explanation": "Eclat utilise la TDB verticale (tid-lists) et calcule le support par intersection."}, {"id": "quiz2_fim_8", "type": "single", "answer": 0, "explanation": "FP-Growth extrait les fréquents sans génération de candidats, via le FP-tree."}, {"id": "quiz2_fim_9", "type": "number", "answer": 8.0, "tolerance": 0.0, "explanation": "2^3 = 8."}]};
+</script></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quiz1_intro_dm.html" class="btn btn-neutral float-left" title="Quiz 1 : Introduction &amp; analyse de données" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quiz3_clustering_spm.html" class="btn btn-neutral float-right" title="Quiz 3 : Clustering &amp; Sequential Pattern Mining" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

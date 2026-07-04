@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz 3 : Clustering &amp; Sequential Pattern Mining &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Quiz 2 : Frequent Itemset Mining &amp; règles" href="quiz2_fim.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../parcours/pigier.html">Parcours PIGIER (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../parcours/ifri.html">Parcours IFRI (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../part4/index.html">Partie 4 | Projet &amp; TPs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">QCM - Questionnaires d’auto-évaluation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#quizzes-disponibles">Quizzes disponibles</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="quiz1_intro_dm.html">Quiz 1 : Introduction &amp; analyse de données</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quiz2_fim.html">Quiz 2 : Frequent Itemset Mining &amp; règles</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quiz 3 : Clustering &amp; Sequential Pattern Mining</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+      <li class="breadcrumb-item active">Quiz 3 : Clustering &amp; Sequential Pattern Mining</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/part6/quizzes/quiz3_clustering_spm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quiz-3-clustering-sequential-pattern-mining">
+<h1>Quiz 3 : Clustering &amp; Sequential Pattern Mining<a class="headerlink" href="#quiz-3-clustering-sequential-pattern-mining" title="Link to this heading"></a></h1>
+<div class="quiz-container" id="quiz-quiz3_clustering_spm">
+<form id="quiz-form-quiz3_clustering_spm" onsubmit="return false;">
+<div class="quiz-question" data-qid="quiz3_clustering_spm_0"> <p class="question-text"><strong>Q1.</strong> K-means est un clustering orienté…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_0" value="0" /> <span>densité</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_0" value="1" /> <span>distance</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_0" value="2" /> <span>graphe</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_0" value="3" /> <span>texte</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_1"> <p class="question-text"><strong>Q2.</strong> La <strong>méthode du coude</strong> sert à…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_1" value="0" /> <span>nettoyer les données</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_1" value="1" /> <span>choisir le nombre de clusters K</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_1" value="2" /> <span>calculer la confiance</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_1" value="3" /> <span>trier les données</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_2"> <p class="question-text"><strong>Q3.</strong> Un <strong>clustroïde</strong> est…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_2" value="0" /> <span>la moyenne des points</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_2" value="1" /> <span>le point de la base le plus proche du centroïde</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_2" value="2" /> <span>le point le plus éloigné</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_2" value="3" /> <span>une valeur aberrante</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_3"> <p class="question-text"><strong>Q4.</strong> Dans K-means, le nouveau centroïde d'un cluster est…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_3" value="0" /> <span>la médiane des points</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_3" value="1" /> <span>la moyenne des points du cluster</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_3" value="2" /> <span>un point aléatoire</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_3" value="3" /> <span>le maximum</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_4"> <p class="question-text"><strong>Q5.</strong> Le SPM diffère du FIM parce que…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_4" value="0" /> <span>il ignore le support</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_4" value="1" /> <span>l&#x27;ordre compte (séquences)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_4" value="2" /> <span>il n&#x27;a pas de seuil</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_4" value="3" /> <span>il n&#x27;a pas de transactions</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_5"> <p class="question-text"><strong>Q6.</strong> Pourquoi ne construit-on pas de treillis fini en SPM ?</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_5" value="0" /> <span>trop de transactions</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_5" value="1" /> <span>il y a une infinité de combinaisons possibles</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_5" value="2" /> <span>il n&#x27;y a pas de seuil θ</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_5" value="3" /> <span>les données manquent</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_6"> <p class="question-text"><strong>Q7.</strong> PrefixSpan repose sur…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_6" value="0" /> <span>la génération explicite de candidats</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_6" value="1" /> <span>les bases de données projetées (croissance de préfixes)</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_6" value="2" /> <span>un FP-tree</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_6" value="3" /> <span>des tid-lists verticales</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_7"> <p class="question-text"><strong>Q8.</strong> CloSpan renvoie les séquences…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_7" value="0" /> <span>maximales</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_7" value="1" /> <span>fermées</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_7" value="2" /> <span>toutes</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_7" value="3" /> <span>aléatoires</span> </label> </div> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_8"> <p class="question-text"><strong>Q9.</strong> Le dendrogramme provient du clustering ___ .</p> <input type="text" name="qquiz3_clustering_spm_8" class="quiz-input" placeholder="Votre réponse..." /> </div>
+<div class="quiz-question" data-qid="quiz3_clustering_spm_9"> <p class="question-text"><strong>Q10.</strong> gSpan fouille des…</p> <div class="quiz-options"> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_9" value="0" /> <span>itemsets</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_9" value="1" /> <span>séquences</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_9" value="2" /> <span>sous-graphes fréquents</span> </label> <label class="quiz-option"> <input type="radio" name="qquiz3_clustering_spm_9" value="3" /> <span>règles d&#x27;association</span> </label> </div> </div>
+</form>
+<div class="quiz-actions">
+<button type="button" class="quiz-btn quiz-btn-check" onclick="checkQuiz('quiz3_clustering_spm')">✓ Vérifier mes réponses</button>
+<button type="button" class="quiz-btn quiz-btn-reset" onclick="resetQuiz('quiz3_clustering_spm')">↺ Recommencer</button>
+</div>
+<div id="result-quiz3_clustering_spm" class="quiz-result"></div>
+<div id="explanations-quiz3_clustering_spm" class="quiz-explanations"></div>
+</div>
+<script>
+if (typeof window.quizData === 'undefined') window.quizData = {};
+window.quizData['quiz3_clustering_spm'] = {"questions": [{"id": "quiz3_clustering_spm_0", "type": "single", "answer": 1, "explanation": "K-means regroupe selon la distance aux centroïdes."}, {"id": "quiz3_clustering_spm_1", "type": "single", "answer": 1, "explanation": "La méthode du coude aide à choisir K."}, {"id": "quiz3_clustering_spm_2", "type": "single", "answer": 1, "explanation": "Le clustroïde est le point réel de la base le plus proche du centroïde."}, {"id": "quiz3_clustering_spm_3", "type": "single", "answer": 1, "explanation": "On recalcule chaque centroïde comme la moyenne des points qui lui sont assignés."}, {"id": "quiz3_clustering_spm_4", "type": "single", "answer": 1, "explanation": "Le SPM travaille sur des séquences : l'ordre des éléments compte."}, {"id": "quiz3_clustering_spm_5", "type": "single", "answer": 1, "explanation": "En SPM, les séquences peuvent répéter des items et être arbitrairement longues ⇒ infinité de candidats."}, {"id": "quiz3_clustering_spm_6", "type": "single", "answer": 1, "explanation": "PrefixSpan fait croître des préfixes via des bases projetées (sans candidats)."}, {"id": "quiz3_clustering_spm_7", "type": "single", "answer": 1, "explanation": "CloSpan extrait les séquences fermées (compression sans perte)."}, {"id": "quiz3_clustering_spm_8", "type": "text", "answer": "hiérarchique", "case_sensitive": false, "explanation": "Le dendrogramme visualise le clustering hiérarchique."}, {"id": "quiz3_clustering_spm_9", "type": "single", "answer": 2, "explanation": "gSpan découvre des sous-graphes fréquents (graph mining)."}]};
+</script></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quiz2_fim.html" class="btn btn-neutral float-left" title="Quiz 2 : Frequent Itemset Mining &amp; règles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
