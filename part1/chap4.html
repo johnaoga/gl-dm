@@ -1,0 +1,196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapitre 4 : Outils d’implémentation &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Partie 2 | Algorithmes de base" href="../part2/index.html" />
+    <link rel="prev" title="Chapitre 3 : Algorithmes et complexité" href="chap3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/pigier.html">Parcours PIGIER (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/ifri.html">Parcours IFRI (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 1 | Préliminaires</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#vue-d-ensemble">Vue d’ensemble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#objectifs">Objectifs</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#organisation">Organisation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="chap1.html">Chapitre 1 : Introduction au data mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chap2.html">Chapitre 2 : Analyse de données</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chap3.html">Chapitre 3 : Algorithmes et complexité</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Chapitre 4 : Outils d’implémentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#objectifs">Objectifs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#langages-de-programmation">1. Langages de programmation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solveurs-et-bibliotheques-specialises">2. Solveurs et bibliothèques spécialisés</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logiciels-tout-en-un-standalone">3. Logiciels tout-en-un (standalone)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exercice">Exercice</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part4/index.html">Partie 4 | Projet &amp; TPs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 1 | Préliminaires</a></li>
+      <li class="breadcrumb-item active">Chapitre 4 : Outils d’implémentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part1/chap4.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="chapitre-4-outils-d-implementation">
+<span id="part1-chap4"></span><h1>Chapitre 4 : Outils d’implémentation<a class="headerlink" href="#chapitre-4-outils-d-implementation" title="Link to this heading"></a></h1>
+<p>Pour mettre en pratique le data mining, on dispose de trois familles d’outils :
+<strong>langages de programmation</strong>, <strong>solveurs/bibliothèques spécialisés</strong> et
+<strong>logiciels tout-en-un</strong>.</p>
+<section id="objectifs">
+<h2>Objectifs<a class="headerlink" href="#objectifs" title="Link to this heading"></a></h2>
+<p>À la fin de ce chapitre, vous devez pouvoir :</p>
+<ul class="simple">
+<li><p>Choisir un <strong>langage</strong> adapté à une tâche de data mining</p></li>
+<li><p>Citer des <strong>bibliothèques/solveurs</strong> spécialisés et des <strong>logiciels</strong> tout-en-un</p></li>
+<li><p>Savoir où trouver des <strong>implémentations de référence</strong></p></li>
+</ul>
+</section>
+<section id="langages-de-programmation">
+<h2>1. Langages de programmation<a class="headerlink" href="#langages-de-programmation" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Python</strong> — l’écosystème de référence en data science : <code class="docutils literal notranslate"><span class="pre">pandas</span></code> (manipulation),
+<code class="docutils literal notranslate"><span class="pre">numpy</span></code> (calcul), <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (ML/clustering), <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>/<code class="docutils literal notranslate"><span class="pre">seaborn</span></code>
+(visualisation), <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> (Apriori/FP-Growth).</p></li>
+<li><p><strong>R</strong> — très présent en statistique et exploration : <code class="docutils literal notranslate"><span class="pre">dplyr</span></code>/<code class="docutils literal notranslate"><span class="pre">tidyverse</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ggplot2</span></code>, <code class="docutils literal notranslate"><span class="pre">arules</span></code> (règles d’association).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Les bases de Python et de R sont traitées dans le cours
+<a class="reference external" href="https://johnaoga.github.io/pythonr/">PythonR</a> — réutilisez-le comme référence.</p>
+</div>
+</section>
+<section id="solveurs-et-bibliotheques-specialises">
+<h2>2. Solveurs et bibliothèques spécialisés<a class="headerlink" href="#solveurs-et-bibliotheques-specialises" title="Link to this heading"></a></h2>
+<p>Pour le <em>pattern mining</em>, des bibliothèques fournissent des implémentations
+optimisées (souvent plus rapides qu’une implémentation maison) :</p>
+<ul class="simple">
+<li><p><strong>SPMF</strong> (<a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">spmf</a>) — une référence
+Java : Apriori, Eclat, FP-Growth, PrefixSpan, CloSpan, CMRules, gSpan, … (utilisée
+en <a class="reference internal" href="../part3/index.html"><span class="doc">Partie 3</span></a>).</p></li>
+<li><p><strong>FIMI</strong> (<a class="reference external" href="http://fimi.uantwerpen.be/">fimi</a>) — implémentations et <strong>datasets</strong>
+de référence pour le <em>frequent itemset mining</em> (dont <strong>LCM</strong>, parmi les plus rapides).</p></li>
+</ul>
+</section>
+<section id="logiciels-tout-en-un-standalone">
+<h2>3. Logiciels tout-en-un (standalone)<a class="headerlink" href="#logiciels-tout-en-un-standalone" title="Link to this heading"></a></h2>
+<p>Des environnements graphiques permettent de faire du data mining <strong>sans coder</strong> (par
+glisser-déposer de blocs) :</p>
+<ul class="simple">
+<li><p><strong>Weka</strong>, <strong>Orange</strong>, <strong>KNIME</strong>, <strong>RapidMiner</strong> — exploration, prétraitement,
+clustering, règles d’association, évaluation.</p></li>
+</ul>
+<p>Ils sont utiles pour prototyper vite et pour enseigner les concepts, avant de passer
+à une implémentation programmée pour plus de contrôle et de performance.</p>
+</section>
+<section id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Link to this heading"></a></h2>
+<p>Pour chacune de ces tâches, proposez <strong>un</strong> outil adapté et justifiez : (a) analyse
+descriptive rapide d’un CSV ; (b) Apriori sur une grosse base de transactions ;
+(c) prototypage visuel d’un <em>pipeline</em> de clustering sans coder.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chap3.html" class="btn btn-neutral float-left" title="Chapitre 3 : Algorithmes et complexité" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../part2/index.html" class="btn btn-neutral float-right" title="Partie 2 | Algorithmes de base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
