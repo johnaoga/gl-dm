@@ -7,7 +7,7 @@ Partie 3 | Algorithmes avancés
 Vue d'ensemble
 ==============
 
-Cette partie (parcours **IFRI**) approfondit le *pattern mining* avec des
+Cette partie (parcours **Avancé**) approfondit le *pattern mining* avec des
 algorithmes **avancés** issus d'**articles scientifiques**. Chaque chapitre est une
 **fiche** : définition, idée clé, article de référence, et principe par l'exemple.
 
