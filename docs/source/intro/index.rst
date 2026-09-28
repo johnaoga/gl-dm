@@ -4,6 +4,8 @@
 Organisation du cours
 *********************
 
+Si vous suivez actuellement ce cours, vous devez signer la politique IA `ici <https://forms.gle/TtNLyc4pNSYaANTX9>`_.
+
 Le **Data Mining** (fouille de données) consiste à **découvrir des connaissances
 ou informations utiles, souvent cachées**, dans les données — afin d'appuyer la
 **prise de décision**. Ce cours en couvre les concepts, les algorithmes (de base
