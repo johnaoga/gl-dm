@@ -1,10 +1,10 @@
 .. _parcours_ifri:
 
 *************************************************************************************************
-Parcours IFRI (M2)
+Parcours Avancé (M2)
 *************************************************************************************************
 
-Ce parcours **approfondi** est enseigné à l'IFRI. Il reprend les fondamentaux
+Ce parcours **approfondi** est enseigné au Parcours Avancé. Il reprend les fondamentaux
 (Parties 1–2, parcourus plus rapidement) puis va **plus loin** : algorithmes
 **avancés** tirés d'**articles scientifiques**, présentés en **exposés**. Volume :
 **10 séances de 4 h**.
@@ -25,7 +25,7 @@ Objectifs
 Chapitres couverts
 ==================
 
-Toute la **Partie 1** et la **Partie 2** (parcourues plus rapidement qu'à PIGIER) :
+Toute la **Partie 1** et la **Partie 2** (parcourues plus rapidement qu'au Parcours Intermédiaire) :
 
 * :doc:`chap1 <../part1/chap1>` · :doc:`chap2 <../part1/chap2>` · :doc:`chap3 — Algorithmes & complexité <../part1/chap3>` · :doc:`chap4 <../part1/chap4>`
 * :doc:`chap5 — Clustering <../part2/chap5>` · :doc:`chap6 — FIM <../part2/chap6>` · :doc:`chap7 — Sequential Pattern Mining <../part2/chap7>`
@@ -49,7 +49,7 @@ Travaux & évaluation
 * :doc:`Projet final <../part4/index>` — démarche complète (CRISP-DM) sur des données réelles
 
 .. note::
-   Le **TP analyse descriptive** de PIGIER n'est **pas** au programme IFRI. Les
+   Le **TP analyse descriptive** du Parcours Intermédiaire n'est **pas** au programme du parcours Avancé. Les
    **poids** de chaque élément sont communiqués par l'enseignant.
 
 Agenda indicatif (10 × 4 h)

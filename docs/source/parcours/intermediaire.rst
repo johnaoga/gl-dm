@@ -1,11 +1,11 @@
 .. _parcours_pigier:
 
 *************************************************************************************************
-Parcours PIGIER (M2)
+Parcours Intermédiaire (M2)
 *************************************************************************************************
 
-Ce parcours est la version **fondamentaux** du cours de Data Mining, enseignée à
-PIGIER. Il couvre une sélection des chapitres communs, sur **7 séances de 3 h**.
+Ce parcours est la version **fondamentaux** du cours de Data Mining, que je donne
+en parcours Intermédiaire. Il couvre une sélection des chapitres communs, sur **7 séances de 3 h**.
 
 Objectifs
 =========

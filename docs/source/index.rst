@@ -2,8 +2,7 @@
 DM-M : Data Mining
 #########################################################
 
-Bienvenue dans les notes du cours de **Data Mining** (fouille de données) du
-Master 2 à l'IFRI/UAC et à PIGIER (Bénin).
+Bienvenue dans les notes du cours de **Data Mining** (fouille de données). Cours de Master 2 en parcours Intermédiaire et Avancé.
 
 Le data mining cherche à **découvrir des connaissances (cachées)** dans les
 données : motifs fréquents (*pattern mining*), règles d'association, clustering,
@@ -18,15 +17,15 @@ avancés** issus d'articles scientifiques (Partie 3), et un volet **projet & TP*
    différents. Consultez votre **parcours** pour savoir quels chapitres sont
    couverts et comment vous êtes évalué :
 
-   - :doc:`Parcours PIGIER <parcours/pigier>` (M2 — fondamentaux, 7 séances × 3 h)
-   - :doc:`Parcours IFRI <parcours/ifri>` (M2 — approfondi + algorithmes avancés, 10 séances × 4 h)
+   - :doc:`Parcours Intermédiaire <parcours/intermediaire>` (M2 — fondamentaux, 7 séances × 3 h)
+   - :doc:`Parcours Avancé <parcours/avance>` (M2 — approfondi + algorithmes avancés, 10 séances × 4 h)
 
 .. toctree::
    :maxdepth: 1
    :caption: Parcours
 
-   parcours/pigier
-   parcours/ifri
+   parcours/intermediaire
+   parcours/avance
 
 .. toctree::
    :maxdepth: 2

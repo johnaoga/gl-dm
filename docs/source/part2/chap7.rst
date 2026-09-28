@@ -77,6 +77,6 @@ items, être arbitrairement longue).
 Exercice
 ========
 
-Voir le :doc:`TP PrefixSpan <../part4/index>` (parcours IFRI) : implémentez le
+Voir le :doc:`TP PrefixSpan <../part4/index>` (parcours Avancé) : implémentez le
 *sequential pattern mining* et comparez vos résultats à une implémentation de
 référence (SPMF).
