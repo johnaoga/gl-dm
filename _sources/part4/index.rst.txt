@@ -13,8 +13,8 @@ programme (voir le tableau ci-dessous).
    :widths: 46 27 27
 
    * - TP
-     - PIGIER
-     - IFRI
+     - Intermédiaire
+     - Avancé
    * - TP — Analyse descriptive
      - ✅
      - ✗
@@ -63,7 +63,7 @@ renvoie la liste des **patterns fréquents**.
 *Indices (Python) :* ``itertools``, ``set.issubset`` / ``set.issuperset``.
 
 
-TP — Implémentation de PrefixSpan *(IFRI)*
+TP — Implémentation de PrefixSpan *(Parcours Avancé)*
 ==========================================
 
 Implémenter le *sequential pattern mining* (PrefixSpan), **vérifier** qu'on obtient

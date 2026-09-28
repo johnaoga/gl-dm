@@ -19,7 +19,7 @@ et avancés) et leur mise en pratique.
 * Identifier les éléments du data mining et leurs domaines d'application
 * Identifier les **cas d'usage** des algorithmes de DM
 * Implémenter des algorithmes de DM (*frequent itemset mining*, clustering, …)
-* *(IFRI)* Lire et expliquer un **article scientifique** en data mining, et présenter un algorithme avancé
+* *(Parcours Avancé)* Lire et expliquer un **article scientifique** en data mining, et présenter un algorithme avancé
 
 
 Pédagogie
@@ -27,7 +27,7 @@ Pédagogie
 
 La pédagogie est mixte et basée sur l'**apprentissage par projet**. Nous alternerons
 cours magistraux, travaux pratiques d'implémentation, analyses descriptives,
-exposés (pour l'IFRI : présentation d'algorithmes avancés à partir de papiers) et
+exposés (pour le parcours Avancé : présentation d'algorithmes avancés à partir de papiers) et
 un projet final appliquant une démarche complète (CRISP-DM).
 
 
@@ -43,8 +43,8 @@ sélection de chapitres) :
    :widths: 22 39 39
 
    * -
-     - :doc:`PIGIER <../parcours/pigier>` (M2)
-     - :doc:`IFRI <../parcours/ifri>` (M2)
+     - :doc:`Intermédiaire <../parcours/intermediaire>` (M2)
+     - :doc:`Avancé <../parcours/avance>` (M2)
    * - **Orientation**
      - Fondamentaux du data mining
      - Approfondi : algorithmes avancés issus d'articles scientifiques
@@ -64,7 +64,7 @@ Répartition du contenu
 
 * :doc:`Partie 1 <../part1/index>` — **Préliminaires** : introduction au data mining, analyse de données, algorithmes & complexité, outils.
 * :doc:`Partie 2 <../part2/index>` — **Algorithmes de base** : clustering, *frequent itemset mining* (+ règles d'association), *sequential pattern mining*.
-* :doc:`Partie 3 <../part3/index>` — **Algorithmes avancés** (IFRI, exposés) : Eclat, FP-Growth, PrefixSpan, CloSpan, CMRules, gSpan.
+* :doc:`Partie 3 <../part3/index>` — **Algorithmes avancés** (Parcours Avancé, exposés) : Eclat, FP-Growth, PrefixSpan, CloSpan, CMRules, gSpan.
 * :doc:`Partie 4 <../part4/index>` — **Projet & TPs**.
 
 Une partie :doc:`QCM <../part6/index>` interactive complète le cours.
