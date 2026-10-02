@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travaux Dirigés : se familiariser avec un outil de Data Mining &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QCM - Questionnaires d’auto-évaluation" href="../part6/index.html" />
+    <link rel="prev" title="Partie 4 | Projet &amp; TPs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/intermediaire.html">Parcours Intermédiaire (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/avance.html">Parcours Avancé (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 4 | Projet &amp; TPs</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Travaux Dirigés : se familiariser avec un outil de Data Mining</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contexte">1. Contexte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#objectifs-pedagogiques">2. Objectifs pédagogiques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequis-techniques">3. Prérequis techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#travail-a-realiser">4. Travail à réaliser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#partie-a-decouvrir-spmf">Partie A — Découvrir SPMF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-b-l-article-fondateur-d-apriori">Partie B — L’article fondateur d’Apriori</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-c-l-exemple-apriori-de-la-documentation-spmf">Partie C — L’exemple Apriori de la documentation SPMF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-d-les-jeux-de-donnees-retail-et-chess">Partie D — Les jeux de données <em>retail</em> et <em>chess</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-e-prise-en-main-de-l-interface-graphique">Partie E — Prise en main de l’interface graphique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-f-utiliser-spmf-depuis-un-programme">Partie F — Utiliser SPMF depuis un programme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-g-experimentation-temps-d-execution-en-fonction-du-support">Partie G — Expérimentation : temps d’exécution en fonction du support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-h-regard-critique-de-1994-a-aujourd-hui">Partie H — Regard critique : de 1994 à aujourd’hui</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#livrables">5. Livrables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#le-rapport">5.1 Le rapport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#le-formulaire-de-remise">5.2 Le formulaire de remise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#criteres-d-evaluation-indicatifs">5.3 Critères d’évaluation (indicatifs)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references">6. Références</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-analyse-descriptive">TP — Analyse descriptive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-k-means">TP — Implémentation de K-means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-d-apriori">TP — Implémentation d’Apriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-prefixspan-parcours-avance">TP — Implémentation de PrefixSpan <em>(Parcours Avancé)</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#projet-final-data-mining">Projet final — Data Mining</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 4 | Projet &amp; TPs</a></li>
+      <li class="breadcrumb-item active">Travaux Dirigés : se familiariser avec un outil de Data Mining</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part4/td_spmf.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="travaux-diriges-se-familiariser-avec-un-outil-de-data-mining">
+<span id="td-spmf"></span><h1>Travaux Dirigés : se familiariser avec un outil de Data Mining<a class="headerlink" href="#travaux-diriges-se-familiariser-avec-un-outil-de-data-mining" title="Link to this heading"></a></h1>
+<blockquote>
+<div><p><strong>Attention!</strong>: Relire la politique sur l’IA si nécessaire si vous n’êtes pas sure de ce qu’il faut faire dans le cas d’un TD! Sinon, c’est 0 autorisation. C’est vraiment pour vous exercer et il n’y a pas de colle dans ce qui vous est demandé et il n’y a pas de bonnes/mauvaises réponses. En vrai il s’agit de réapprendre à lire, à chercher par soi-même à l’ère des IA et c’est un bon exercice. Faites le consciemment et honnêtement!</p>
+</div></blockquote>
+<p><strong>Cours :</strong> Data Mining / Fouille de données
+<strong>Thème :</strong> Extraction d’itemsets fréquents (<em>Frequent Itemset Mining</em>, FIM) avec la bibliothèque SPMF
+<strong>Modalité :</strong> individuel
+<strong>Durée indicative :</strong> 4 heures
+<strong>Date limite de remise :</strong> 02/10/2026 à 18H00 (heure locale)
+<strong>Lien de remise (Google Form) :</strong> https://forms.gle/AULbnicQwN9XKKgV7</p>
+<hr class="docutils" />
+<section id="contexte">
+<h2>1. Contexte<a class="headerlink" href="#contexte" title="Link to this heading"></a></h2>
+<p>L’extraction d’itemsets fréquents consiste à découvrir, dans une base de transactions, les ensembles d’éléments (<em>items</em>) qui apparaissent ensemble suffisamment souvent. C’est le problème à l’origine de l’analyse du « panier de la ménagère » et des règles d’association. L’algorithme <strong>Apriori</strong>, proposé par Agrawal et Srikant en 1994, est l’algorithme fondateur de ce domaine.</p>
+<p>Dans ce TD, vous allez découvrir <strong>SPMF</strong>, une bibliothèque open source spécialisée dans la fouille de motifs, l’utiliser via son interface graphique puis depuis un langage de programmation, et mettre vos résultats en perspective avec l’article original d’Apriori.</p>
+</section>
+<section id="objectifs-pedagogiques">
+<h2>2. Objectifs pédagogiques<a class="headerlink" href="#objectifs-pedagogiques" title="Link to this heading"></a></h2>
+<p>À l’issue de ce TD, vous devez être capable de :</p>
+<ol class="arabic simple">
+<li><p><strong>Présenter</strong> la bibliothèque SPMF : ce qu’elle est, ce qu’elle propose, comment elle est distribuée et documentée.</p></li>
+<li><p><strong>Utiliser</strong> l’interface graphique de SPMF pour charger un jeu de données, paramétrer et exécuter un algorithme, et lire le fichier de résultats.</p></li>
+<li><p><strong>Comprendre</strong> le format des données transactionnelles et <strong>interpréter</strong> un itemset fréquent et son support.</p></li>
+<li><p><strong>Situer</strong> l’algorithme Apriori dans son contexte scientifique en identifiant et en parcourant l’article original.</p></li>
+<li><p><strong>Automatiser</strong> l’exécution d’un algorithme SPMF depuis Python ou R et <strong>vérifier</strong> que les résultats sont identiques à ceux de l’interface graphique.</p></li>
+<li><p><strong>Mener une petite expérimentation</strong> (temps d’exécution en fonction du support minimum), la représenter graphiquement et l’analyser.</p></li>
+<li><p><strong>Porter un regard critique</strong> sur les limites identifiées en 1994 à la lumière des moyens de calcul actuels.</p></li>
+</ol>
+</section>
+<section id="prerequis-techniques">
+<h2>3. Prérequis techniques<a class="headerlink" href="#prerequis-techniques" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Java</strong> (version 8 ou plus récente) installé. Vérifiez avec <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-version</span></code>.</p></li>
+<li><p><strong>Python 3</strong> (avec <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, éventuellement <code class="docutils literal notranslate"><span class="pre">pandas</span></code>) <strong>ou</strong> <strong>R</strong> (avec ggplot2 ou autres).</p></li>
+<li><p>Un éditeur de texte / IDE et un terminal.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="travail-a-realiser">
+<h2>4. Travail à réaliser<a class="headerlink" href="#travail-a-realiser" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Conseil : prenez des notes et des captures d’écran au fur et à mesure. Plusieurs questions du formulaire de remise vous demanderont des informations précises (versions, nombres, valeurs) que vous ne pourrez obtenir qu’en ayant réellement effectué les manipulations. Evidemment vous pouvez copier pour un ami, mais je me demande à quoi ça t’avancera aujourd’hui!</p>
+</div></blockquote>
+<section id="partie-a-decouvrir-spmf">
+<h3>Partie A — Découvrir SPMF<a class="headerlink" href="#partie-a-decouvrir-spmf" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Rendez-vous sur le site officiel : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a></p></li>
+<li><p>Lisez la page d’accueil et répondez pour vous-même aux questions suivantes : Qu’est-ce que SPMF ? Dans quel langage est-elle écrite ? Sous quelle licence est-elle distribuée ? Quels grands types de motifs permet-elle d’extraire (itemsets, règles d’association, motifs séquentiels, etc.) ? Combien d’algorithmes environ propose-t-elle ?</p></li>
+<li><p>Retrouvez le <strong>dépôt GitHub</strong> officiel de SPMF (à partir du site ou par une recherche). Explorez-le : organisation des dossiers, où se trouve le code de l’algorithme Apriori, date de la dernière mise à jour, présence d’une licence, etc.</p></li>
+<li><p>Téléchargez le fichier <strong><code class="docutils literal notranslate"><span class="pre">spmf.jar</span></code></strong> (dernière version) depuis la page de téléchargement du site. Notez le numéro de version.</p></li>
+</ol>
+</section>
+<section id="partie-b-l-article-fondateur-d-apriori">
+<h3>Partie B — L’article fondateur d’Apriori<a class="headerlink" href="#partie-b-l-article-fondateur-d-apriori" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Retrouvez l’article suivant (version PDF) :
+<em>R. Agrawal et R. Srikant, « Fast Algorithms for Mining Association Rules », Proceedings of the 20th International Conference on Very Large Data Bases (VLDB), 1994.</em></p></li>
+<li><p>Il n’est <strong>pas</strong> demandé de lire l’article en entier. Vous devez :</p>
+<ul class="simple">
+<li><p>lire attentivement le <strong>résumé</strong> (<em>abstract</em>) – Hey! Lire un paragraphe en anglais et le comprendre est un skill intéressant à avoir donc n’essayer pas de traduire directement, relisez une ou deux fois d’abord;</p></li>
+<li><p>parcourir l’article pour en comprendre la <strong>structure</strong> (sections, nature des expérimentations, figures) ;</p></li>
+<li><p>repérer la <strong>Figure 6</strong> (vous en aurez besoin dans la Partie G) ;</p></li>
+<li><p>lire la <strong>conclusion</strong> et les <strong>perspectives</strong> (vous en aurez besoin dans la Partie H).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="partie-c-l-exemple-apriori-de-la-documentation-spmf">
+<h3>Partie C — L’exemple Apriori de la documentation SPMF<a class="headerlink" href="#partie-c-l-exemple-apriori-de-la-documentation-spmf" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Lisez la page d’exemple : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/Apriori.php">https://www.philippe-fournier-viger.com/spmf/Apriori.php</a></p></li>
+<li><p>Assurez-vous de comprendre :</p>
+<ul class="simple">
+<li><p>le <strong>format du fichier d’entrée</strong> (une ligne = une transaction ; les items sont des entiers positifs séparés par des espaces) ;</p></li>
+<li><p>la signification du paramètre <strong>minsup</strong> (support minimum, exprimé en pourcentage) ;</p></li>
+<li><p>le <strong>format du fichier de sortie</strong> (chaque ligne contient un itemset suivi de <code class="docutils literal notranslate"><span class="pre">#SUP:</span></code> et de son support absolu, c’est-à-dire le nombre de transactions qui le contiennent) ;</p></li>
+<li><p>la différence entre <strong>support absolu</strong> (nombre de transactions) et <strong>support relatif</strong> (pourcentage).</p></li>
+</ul>
+</li>
+<li><p>Reproduisez « à la main » ou mentalement le petit exemple de la page pour vérifier votre compréhension.</p></li>
+</ol>
+</section>
+<section id="partie-d-les-jeux-de-donnees-retail-et-chess">
+<h3>Partie D — Les jeux de données <em>retail</em> et <em>chess</em><a class="headerlink" href="#partie-d-les-jeux-de-donnees-retail-et-chess" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Rendez-vous sur la page des jeux de données : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php">https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php</a></p></li>
+<li><p>Téléchargez les jeux de données <strong>retail</strong> et <strong>chess</strong> (format SPMF pour l’extraction d’itemsets).</p></li>
+<li><p>Documentez-vous sur chacun :</p>
+<ul class="simple">
+<li><p>D’où proviennent-ils ? Que représente une transaction ? Que représente un item ?</p></li>
+<li><p>Combien de transactions, combien d’items distincts, quelle longueur moyenne de transaction ?</p></li>
+<li><p>Lequel est <strong>dense</strong> et lequel est <strong>creux</strong> (<em>sparse</em>) ? Pourquoi est-ce important pour un algorithme comme Apriori ?</p></li>
+</ul>
+</li>
+<li><p>Ouvrez les fichiers dans un éditeur de texte et observez leur contenu.</p></li>
+</ol>
+<blockquote>
+<div><p><strong>Attention :</strong> ces fichiers ne sont pas des tableaux à colonnes fixes. Réfléchissez à ce que représente chaque nombre sur une ligne, et pourquoi deux lignes n’ont pas forcément la même longueur.</p>
+</div></blockquote>
+</section>
+<section id="partie-e-prise-en-main-de-l-interface-graphique">
+<h3>Partie E — Prise en main de l’interface graphique<a class="headerlink" href="#partie-e-prise-en-main-de-l-interface-graphique" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Lancez l’interface graphique de SPMF : double-cliquez sur <code class="docutils literal notranslate"><span class="pre">spmf.jar</span></code>, ou dans un terminal :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java<span class="w"> </span>-jar<span class="w"> </span>spmf.jar
+</pre></div>
+</div>
+<p>Si vous manquez de mémoire sur de gros jeux de données, vous pouvez augmenter la mémoire allouée à Java, par exemple : <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-Xmx4g</span> <span class="pre">-jar</span> <span class="pre">spmf.jar</span></code>.</p>
+</li>
+<li><p>Dans l’interface :</p>
+<ul class="simple">
+<li><p>choisissez l’algorithme <strong>Apriori</strong> ;</p></li>
+<li><p>sélectionnez le fichier d’entrée <strong>retail</strong> ;</p></li>
+<li><p>choisissez un fichier de sortie ;</p></li>
+<li><p>fixez <strong>minsup</strong> (par exemple <code class="docutils literal notranslate"><span class="pre">10%</span></code>, puis d’autres valeurs) ;</p></li>
+<li><p>exécutez et observez les statistiques affichées (temps d’exécution, mémoire, nombre d’itemsets fréquents).</p></li>
+</ul>
+</li>
+<li><p>Ouvrez le fichier de sortie et examinez les itemsets trouvés.</p></li>
+<li><p><strong>Interprétation :</strong> choisissez <strong>un itemset de taille au moins 2</strong> issu de <em>retail</em> et expliquez en une ou deux phrases ce qu’il signifie concrètement (quels items, combien de transactions, quel pourcentage des transactions). Calculez vous-même son support relatif à partir du support absolu.</p></li>
+<li><p>Répétez l’exécution sur <strong>chess</strong> avec un support minimum élevé (par exemple <code class="docutils literal notranslate"><span class="pre">90%</span></code>) et comparez qualitativement le nombre d’itemsets obtenus avec <em>retail</em>.</p></li>
+<li><p>Faites une <strong>capture d’écran</strong> de l’interface après une exécution (paramètres et statistiques visibles).</p></li>
+</ol>
+</section>
+<section id="partie-f-utiliser-spmf-depuis-un-programme">
+<h3>Partie F — Utiliser SPMF depuis un programme<a class="headerlink" href="#partie-f-utiliser-spmf-depuis-un-programme" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Sur le site de SPMF, repérez la section consacrée aux <strong>wrappers</strong> (interfaces permettant d’appeler SPMF depuis d’autres langages).</p></li>
+<li><p>Choisissez <strong>Python ou R</strong>.</p>
+<ul>
+<li><p><strong>En Python</strong>, l’approche recommandée est d’appeler directement le <code class="docutils literal notranslate"><span class="pre">.jar</span></code> en ligne de commande depuis votre script (par exemple avec le module <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>). Soyez libre d’utiliser aussi <code class="docutils literal notranslate"><span class="pre">SPMF.py</span></code>. La commande SPMF en ligne de commande a la forme générale :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java<span class="w"> </span>-jar<span class="w"> </span>spmf.jar<span class="w"> </span>run<span class="w"> </span>Apriori<span class="w"> </span>retail.txt<span class="w"> </span>output.txt<span class="w"> </span><span class="m">1</span>%
+</pre></div>
+</div>
+</li>
+<li><p><strong>En R</strong>, vous pouvez utiliser un wrapper existant ou appeler le <code class="docutils literal notranslate"><span class="pre">.jar</span></code> via <code class="docutils literal notranslate"><span class="pre">system()</span></code> / <code class="docutils literal notranslate"><span class="pre">system2()</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Écrivez un script qui :</p>
+<ul class="simple">
+<li><p>exécute Apriori sur un jeu de données avec un support donné ;</p></li>
+<li><p>lit le fichier de sortie et en extrait les itemsets et leurs supports ;</p></li>
+<li><p>affiche le nombre d’itemsets fréquents trouvés.</p></li>
+</ul>
+</li>
+<li><p><strong>Vérification :</strong> exécutez votre script avec <strong>exactement les mêmes paramètres</strong> que dans la Partie E et vérifiez que vous obtenez <strong>les mêmes résultats</strong> (même nombre d’itemsets, mêmes supports). Expliquez comment vous l’avez vérifié.</p></li>
+</ol>
+</section>
+<section id="partie-g-experimentation-temps-d-execution-en-fonction-du-support">
+<h3>Partie G — Expérimentation : temps d’exécution en fonction du support<a class="headerlink" href="#partie-g-experimentation-temps-d-execution-en-fonction-du-support" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Avec votre script, exécutez Apriori pour <strong>plusieurs valeurs de support minimum</strong> (au moins 5 valeurs) et mesurez à chaque fois :</p>
+<ul class="simple">
+<li><p>le <strong>temps d’exécution</strong> ;</p></li>
+<li><p>le <strong>nombre d’itemsets fréquents</strong> obtenus.</p></li>
+</ul>
+<p>Valeurs indicatives (à adapter selon votre machine) :</p>
+<ul class="simple">
+<li><p><em>chess</em> (dense) : 95 %, 90 %, 85 %, 80 %, 75 %, 70 % ;</p></li>
+<li><p><em>retail</em> (creux) : 50 %, 40 %, 30 %, 20 %, 10 %, 5 %, 2 %, 1 %.</p></li>
+</ul>
+<blockquote>
+<div><p>Sur un jeu dense comme <em>chess</em>, le nombre d’itemsets explose très vite lorsque le support diminue. Si une exécution dépasse quelques minutes ou sature la mémoire, arrêtez-la et <strong>mentionnez-le</strong> dans votre rapport : c’est un résultat en soi.</p>
+</div></blockquote>
+</li>
+<li><p>Précisez <strong>comment</strong> vous mesurez le temps (temps mesuré par votre script autour de l’appel, ou temps affiché par SPMF). Idéalement, répétez chaque mesure plusieurs fois (par exemple 3) et retenez la moyenne.</p></li>
+<li><p>Tracez une <strong>courbe</strong> (<em>line plot</em>) : support minimum en abscisse, temps d’exécution en ordonnée. Vous pouvez ajouter une seconde courbe ou un second graphique pour le nombre d’itemsets.</p></li>
+<li><p><strong>Analysez</strong> la tendance : comment évolue le temps lorsque le support diminue ? Le temps suit-il le nombre d’itemsets ? Les comportements de <em>retail</em> et <em>chess</em> diffèrent-ils, et pourquoi ?</p></li>
+<li><p><strong>Comparez</strong> la tendance de votre courbe avec la <strong>Figure 6</strong> de l’article de 1994 : que représente cette figure (axes, jeux de données, algorithmes comparés) ? La tendance est-elle la même que la vôtre ? Quelles différences de contexte (données, machine, ordres de grandeur) faut-il garder en tête pour comparer ?</p></li>
+</ol>
+</section>
+<section id="partie-h-regard-critique-de-1994-a-aujourd-hui">
+<h3>Partie H — Regard critique : de 1994 à aujourd’hui<a class="headerlink" href="#partie-h-regard-critique-de-1994-a-aujourd-hui" title="Link to this heading"></a></h3>
+<p>À partir de la conclusion et des perspectives de l’article :</p>
+<ol class="arabic simple">
+<li><p>Identifiez les <strong>difficultés et limites</strong> auxquelles les auteurs étaient confrontés en 1994 (taille des bases, mémoire, accès disque, temps de calcul, types de données, etc.) et les <strong>pistes de travail futur</strong> qu’ils proposaient.</p></li>
+<li><p>Discutez-les avec un <strong>regard actuel</strong> : ces problèmes sont-ils résolus ? Qu’ont changé la puissance de calcul, la mémoire, le calcul parallèle et distribué (clusters, GPU, supercalculateurs), le <em>cloud</em>, ou l’essor de l’IA ? Quels problèmes restent pertinents aujourd’hui (par exemple l’explosion combinatoire du nombre de motifs, illustrée par votre expérience sur <em>chess</em>) ?</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="livrables">
+<h2>5. Livrables<a class="headerlink" href="#livrables" title="Link to this heading"></a></h2>
+<section id="le-rapport">
+<h3>5.1 Le rapport<a class="headerlink" href="#le-rapport" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Une page de contenu</strong> (format A4, police de 11 pt minimum, marges raisonnables).</p></li>
+<li><p><strong>Jusqu’à 2 pages supplémentaires</strong> réservées <strong>uniquement</strong> aux références, tableaux, figures et captures d’écran.</p></li>
+<li><p>Format <strong>PDF</strong>, nommé <code class="docutils literal notranslate"><span class="pre">NOM_Prenom_TD_SPMF.pdf</span></code>.</p></li>
+</ul>
+<p><strong>Ce qui est attendu dans la page de contenu</strong> (à titre indicatif) :</p>
+<ul class="simple">
+<li><p>une présentation brève de SPMF et du problème FIM (2 à 3 phrases) ;</p></li>
+<li><p>l’interprétation d’un itemset de <em>retail</em> ;</p></li>
+<li><p>la manière dont vous avez vérifié la cohérence entre interface graphique et script ;</p></li>
+<li><p>l’analyse de votre courbe temps/support et sa comparaison avec la Figure 6 ;</p></li>
+<li><p>votre discussion critique 1994 → aujourd’hui.</p></li>
+</ul>
+<p>Soyez <strong>synthétique et précis</strong> : une page, c’est court. Privilégiez les observations chiffrées et les arguments plutôt que la paraphrase de la documentation. Les figures doivent être lisibles, avoir des axes titrés avec unités, et être référencées dans le texte (« voir Figure 1 »).</p>
+<p><strong>Dans les pages annexes :</strong></p>
+<ul class="simple">
+<li><p>la (ou les) figure(s) temps/support ;</p></li>
+<li><p>un tableau des mesures (support, temps, nombre d’itemsets) ;</p></li>
+<li><p>une capture d’écran de l’interface graphique ;</p></li>
+<li><p>les références (au minimum : le site SPMF et l’article d’Agrawal et Srikant).</p></li>
+</ul>
+</section>
+<section id="le-formulaire-de-remise">
+<h3>5.2 Le formulaire de remise<a class="headerlink" href="#le-formulaire-de-remise" title="Link to this heading"></a></h3>
+<p>La remise se fait <strong>exclusivement</strong> via le Google Form : https://forms.gle/AULbnicQwN9XKKgV7</p>
+<p>Le formulaire contient des <strong>questions précises</strong> portant sur chaque partie du TD (informations factuelles, valeurs obtenues, interprétations) ainsi qu’un champ pour <strong>téléverser votre rapport PDF</strong>. Répondez directement et précisément ; les réponses doivent être cohérentes avec votre rapport. Prévoyez également de pouvoir fournir votre script (copié dans le formulaire ou via un lien).</p>
+</section>
+<section id="criteres-d-evaluation-indicatifs">
+<h3>5.3 Critères d’évaluation (indicatifs)<a class="headerlink" href="#criteres-d-evaluation-indicatifs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Exactitude des réponses factuelles du formulaire (SPMF, données, article)</p></li>
+<li><p>Utilisation correcte de l’interface graphique et interprétation d’un itemset</p></li>
+<li><p>Script fonctionnel et vérification de cohérence GUI / script</p></li>
+<li><p>Qualité de l’expérimentation, de la figure et de l’analyse de tendance</p></li>
+<li><p>Comparaison avec la Figure 6 et discussion critique</p></li>
+<li><p>Clarté, concision et respect du format du rapport</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>6. Références<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>P. Fournier-Viger et al., <em>SPMF: An Open-Source Data Mining Library</em>. <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a></p></li>
+<li><p>R. Agrawal et R. Srikant, « Fast Algorithms for Mining Association Rules », <em>Proceedings of the 20th International Conference on Very Large Data Bases (VLDB)</em>, Santiago, Chili, 1994.</p></li>
+<li><p>Documentation SPMF — exemple Apriori : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/Apriori.php">https://www.philippe-fournier-viger.com/spmf/Apriori.php</a></p></li>
+<li><p>Jeux de données SPMF : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php">https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Partie 4 | Projet &amp; TPs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../part6/index.html" class="btn btn-neutral float-right" title="QCM - Questionnaires d’auto-évaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

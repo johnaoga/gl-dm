@@ -4,17 +4,30 @@
 Partie 4 | Projet & TPs
 *************************************************************************************************
 
-Cette partie regroupe les **travaux pratiques** (implémentation) et le **projet**
-final. Selon votre :doc:`parcours <../parcours/pigier>`, tous les TP ne sont pas au
-programme (voir le tableau ci-dessous).
+Cette partie regroupe les **travaux dirigés** (TD : prise en main d'outils et
+lecture d'articles), les **travaux pratiques** (implémentation) et le **projet**
+final. Des **TD sont désormais disponibles** : chacun fait l'objet d'une page dédiée
+(voir ci-dessous), avec ses consignes, ses livrables et son lien de remise. Selon
+votre parcours (:doc:`Intermédiaire <../parcours/intermediaire>` ou
+:doc:`Avancé <../parcours/avance>`), tous les TD/TP ne sont pas au programme (voir
+le tableau ci-dessous).
 
-.. list-table:: TP par parcours
+.. toctree::
+   :maxdepth: 1
+   :caption: Travaux dirigés (TD)
+
+   td_spmf
+
+.. list-table:: TD / TP par parcours
    :header-rows: 1
    :widths: 46 27 27
 
-   * - TP
+   * - TD / TP
      - Intermédiaire
      - Avancé
+   * - :doc:`TD — Prise en main de SPMF (Frequent Itemset Mining) <td_spmf>`
+     - ✗
+     - ✅
    * - TP — Analyse descriptive
      - ✅
      - ✗
@@ -64,7 +77,7 @@ renvoie la liste des **patterns fréquents**.
 
 
 TP — Implémentation de PrefixSpan *(Parcours Avancé)*
-==========================================
+=====================================================
 
 Implémenter le *sequential pattern mining* (PrefixSpan), **vérifier** qu'on obtient
 les mêmes patterns qu'une implémentation connue, puis **comparer les performances** à
