@@ -9,7 +9,7 @@
 **Modalité :** individuel
 **Durée indicative :** 4 heures
 **Date limite de remise :** 02/10/2026 à 18H00 (heure locale)
-**Lien de remise (Google Form) :** https://forms.gle/AULbnicQwN9XKKgV7
+**Lien de remise (Google Form) :** <https://forms.gle/AULbnicQwN9XKKgV7>
 
 ---
 
@@ -167,7 +167,7 @@ Soyez **synthétique et précis** : une page, c'est court. Privilégiez les obse
 
 ### 5.2 Le formulaire de remise
 
-La remise se fait **exclusivement** via le Google Form : https://forms.gle/AULbnicQwN9XKKgV7
+La remise se fait **exclusivement** via le Google Form : <https://forms.gle/AULbnicQwN9XKKgV7>
 
 Le formulaire contient des **questions précises** portant sur chaque partie du TD (informations factuelles, valeurs obtenues, interprétations) ainsi qu'un champ pour **téléverser votre rapport PDF**. Répondez directement et précisément ; les réponses doivent être cohérentes avec votre rapport. Prévoyez également de pouvoir fournir votre script (copié dans le formulaire ou via un lien).
 
