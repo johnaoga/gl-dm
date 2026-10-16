@@ -17,6 +17,7 @@ le tableau ci-dessous).
    :caption: Travaux dirigés (TD)
 
    td_spmf
+   td_dfs_bfs
 
 .. list-table:: TD / TP par parcours
    :header-rows: 1
@@ -26,6 +27,9 @@ le tableau ci-dessous).
      - Intermédiaire
      - Avancé
    * - :doc:`TD — Prise en main de SPMF (Frequent Itemset Mining) <td_spmf>`
+     - ✗
+     - ✅
+   * - :doc:`TD — Parcours DFS et BFS (treillis d'itemsets, Apriori DFS/BFS) <td_dfs_bfs>`
      - ✗
      - ✅
    * - TP — Analyse descriptive
