@@ -1,0 +1,923 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QCM - Questionnaires d’auto-évaluation" href="../part6/index.html" />
+    <link rel="prev" title="Travaux Dirigés : se familiariser avec un outil de Data Mining" href="td_spmf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/intermediaire.html">Parcours Intermédiaire (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/avance.html">Parcours Avancé (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 4 | Projet &amp; TPs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="td_spmf.html">Travaux Dirigés : se familiariser avec un outil de Data Mining</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contexte">1. Contexte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#objectifs-pedagogiques">2. Objectifs pédagogiques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequis-techniques">3. Prérequis techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#travail-a-realiser">4. Travail à réaliser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#partie-a-arbres-et-terminologie">Partie A — Arbres et terminologie</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-b-implementation-conceptuelle-pile-et-file">Partie B — Implémentation conceptuelle : Pile et File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-c-implementation-en-python-ou-r">Partie C — Implémentation en Python ou R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-d-fonctions-recursives-et-dfs-recursif">Partie D — Fonctions récursives et DFS récursif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-e-du-parcours-au-treillis-des-itemsets">Partie E — Du parcours au treillis des itemsets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-f-explorer-le-treillis-avec-le-dfs-naif-vs-heuristique-d-ordre">Partie F — Explorer le treillis avec le DFS : naïf vs heuristique d’ordre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-g-algorithme-apriori-version-dfs-et-version-bfs">Partie G — Algorithme Apriori : version DFS et version BFS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#livrables">5. Livrables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#le-rapport">5.1 Le rapport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#le-formulaire-de-remise">5.2 Le formulaire de remise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#criteres-d-evaluation-indicatifs">5.3 Critères d’évaluation (indicatifs)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references">6. Références</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-analyse-descriptive">TP — Analyse descriptive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-k-means">TP — Implémentation de K-means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-d-apriori">TP — Implémentation d’Apriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-prefixspan-parcours-avance">TP — Implémentation de PrefixSpan <em>(Parcours Avancé)</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#projet-final-data-mining">Projet final — Data Mining</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 4 | Projet &amp; TPs</a></li>
+      <li class="breadcrumb-item active">Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part4/td_dfs_bfs.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="travaux-diriges-exploration-des-espaces-de-possibilites-pour-le-data-mining-parcours-dfs-et-bfs">
+<span id="td-dfs-bfs"></span><h1>Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS<a class="headerlink" href="#travaux-diriges-exploration-des-espaces-de-possibilites-pour-le-data-mining-parcours-dfs-et-bfs" title="Link to this heading"></a></h1>
+<p><strong>Cours :</strong> Data Mining / Fouille de données<br />
+<strong>Thème :</strong> Exploration d’espaces de possibilités — parcours en profondeur (DFS) et en largeur (BFS), application à la génération du treillis d’itemsets<br />
+<strong>Modalité :</strong> individuel
+<strong>Durée indicative :</strong> 4 heures
+<strong>Date limite de remise :</strong> 16/10/2026 à 18h00<br />
+<strong>Lien de remise (Google Form) :</strong> <a class="reference external" href="https://forms.gle/eyVvZseD29Sarb7y9">https://forms.gle/eyVvZseD29Sarb7y9</a></p>
+<hr class="docutils" />
+<section id="contexte">
+<h2>1. Contexte<a class="headerlink" href="#contexte" title="Link to this heading"></a></h2>
+<p>Fouiller des données consiste souvent à explorer un espace de solutions combinatoires qui peut être astronomiquement grand. En extraction d’itemsets fréquents, par exemple, l’espace de toutes les combinaisons d’items possibles forme un <em>treillis</em> (lattice) dont la taille est exponentielle dans le nombre d’items. La capacité à parcourir cet espace de façon systématique — en évitant les redondances et les branches inutiles — est au cœur de tous les algorithmes modernes de Data Mining.</p>
+<p>Ce TD vous amène, pas à pas, à construire cette intuition depuis les bases : vous commencerez par les arbres sur papier, vous implémenterez les parcours DFS et BFS en boucle puis de façon récursive, vous générerez le treillis complet d’un alphabet, et vous comparerez plusieurs stratégies d’implémentation de l’algorithme Apriori.</p>
+</section>
+<section id="objectifs-pedagogiques">
+<h2>2. Objectifs pédagogiques<a class="headerlink" href="#objectifs-pedagogiques" title="Link to this heading"></a></h2>
+<p>À l’issue de ce TD, vous devez être capable de :</p>
+<ol class="arabic simple">
+<li><p><strong>Identifier et nommer</strong> les composants d’un arbre (racine, nœuds internes, feuilles, enfants, parent, profondeur, niveau).</p></li>
+<li><p><strong>Effectuer à la main</strong> les quatre variantes de parcours (DFS gauche-droite, DFS droite-gauche, BFS gauche-droite, BFS droite-gauche) et en déduire l’état de la pile ou de la file à chaque itération.</p></li>
+<li><p><strong>Implémenter</strong> DFS et BFS en boucle avec une pile et une file, puis extraire une fonction générale permettant d’obtenir l’un ou l’autre sans utiliser de <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p></li>
+<li><p><strong>Écrire</strong> une fonction récursive, identifier base case et cas récursif, observer la pile d’exécution, puis implémenter le DFS récursif.</p></li>
+<li><p><strong>Relier</strong> la notion de parcours à la génération du treillis des sous-ensembles d’un alphabet et <strong>caractériser</strong> la structure combinatoire de ce treillis.</p></li>
+<li><p><strong>Comparer</strong> deux stratégies DFS (naïve vs heuristique d’ordre) en termes de nœuds visités et de temps d’exécution, et <strong>justifier théoriquement</strong> les résultats.</p></li>
+<li><p><strong>Implémenter</strong> l’algorithme Apriori dans une version DFS et une version BFS, comparer leurs performances, et les confronter à des implémentations de référence.</p></li>
+</ol>
+</section>
+<section id="prerequis-techniques">
+<h2>3. Prérequis techniques<a class="headerlink" href="#prerequis-techniques" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Python 3.8+</strong> (recommandé) <strong>ou R</strong> avec les bibliothèques : <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> / <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> pour les graphiques, <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> (Python standard) ou équivalent R pour la file. La bibliothèque <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> (Python) ou <code class="docutils literal notranslate"><span class="pre">arules</span></code> (R) servira de référence à la Partie G.</p></li>
+<li><p><strong>SPMF</strong> (dernière version) : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a>. Vérifiez que Java est disponible avec <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-version</span></code> (version 8 ou plus récente).</p></li>
+<li><p>Un IDE ou éditeur de texte avec un terminal.</p></li>
+<li><p>Papier et stylo pour les parties A et E (obligatoires, prenez des photos de vos schémas).</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Conseil général :</strong> prenez des notes et des captures d’écran (ou photos) au fur et à mesure. Plusieurs questions du formulaire de remise vous demanderont des valeurs précises (ordres de traversée, contenus de pile/file à une itération donnée, nombre de nœuds visités) que vous ne pourrez obtenir qu’en ayant réellement réalisé les manipulations.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="travail-a-realiser">
+<h2>4. Travail à réaliser<a class="headerlink" href="#travail-a-realiser" title="Link to this heading"></a></h2>
+<section id="partie-a-arbres-et-terminologie">
+<h3>Partie A — Arbres et terminologie<a class="headerlink" href="#partie-a-arbres-et-terminologie" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> manipuler physiquement un arbre, fixer le vocabulaire, et effectuer les quatre variantes de parcours.</p>
+<ol class="arabic">
+<li><p><strong>Sur papier</strong>, dessinez l’arbre suivant (respectez exactement la structure) :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>           <span class="n">R</span>
+          <span class="o">/</span> \
+         <span class="n">A</span>   <span class="n">B</span>
+        <span class="o">/</span> \   \
+       <span class="n">C</span>   <span class="n">D</span>   <span class="n">E</span>
+      <span class="o">/</span>
+     <span class="n">F</span>
+</pre></div>
+</div>
+<p>Identifiez et annotez sur votre dessin :</p>
+<ul class="simple">
+<li><p>la <strong>racine</strong> (<em>root</em>) ;</p></li>
+<li><p>les <strong>feuilles</strong> (<em>leaves</em>) — nœuds sans enfants ;</p></li>
+<li><p>les <strong>nœuds internes</strong> — nœuds avec au moins un enfant ;</p></li>
+<li><p>pour chaque nœud non-racine, son <strong>parent</strong> ;</p></li>
+<li><p>la <strong>profondeur</strong> (<em>depth</em>) de chaque nœud (racine = profondeur 0) ;</p></li>
+<li><p>le <strong>niveau</strong> (<em>level</em>) de chaque nœud et le nombre de nœuds à chaque niveau.</p></li>
+</ul>
+</li>
+<li><p><strong>Parcours DFS gauche-droite (DFS-GD) :</strong> en partant de R, visitez toujours d’abord l’enfant le plus à gauche avant d’explorer la droite. Notez l’ordre complet de visite des nœuds.</p></li>
+<li><p><strong>Parcours DFS droite-gauche (DFS-DG) :</strong> en partant de R, visitez toujours d’abord l’enfant le plus à droite. Notez l’ordre complet.</p></li>
+<li><p><strong>Parcours BFS gauche-droite (BFS-GD) :</strong> visitez tous les nœuds de chaque niveau de gauche à droite avant de passer au niveau suivant. Notez l’ordre complet.</p></li>
+<li><p><strong>Parcours BFS droite-gauche (BFS-DG) :</strong> même principe, mais de droite à gauche à chaque niveau. Notez l’ordre complet.</p>
+<blockquote>
+<div><p><strong>À vérifier :</strong> le 4e nœud visité dans DFS-GD doit être F. Le 4e nœud visité dans BFS-GD doit être C.</p>
+</div></blockquote>
+</li>
+<li><p>Répondez par écrit : en quoi le DFS et le BFS diffèrent-ils dans leur manière d’explorer l’arbre ? Qu’est-ce que cela implique pour la mémoire utilisée ?</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="partie-b-implementation-conceptuelle-pile-et-file">
+<h3>Partie B — Implémentation conceptuelle : Pile et File<a class="headerlink" href="#partie-b-implementation-conceptuelle-pile-et-file" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> comprendre <em>pourquoi</em> une pile (LIFO) produit le DFS et une file (FIFO) produit le BFS, en simulant les étapes à la main.</p>
+<section id="b-1-dfs-avec-une-pile">
+<h4>B.1 DFS avec une Pile<a class="headerlink" href="#b-1-dfs-avec-une-pile" title="Link to this heading"></a></h4>
+<p>L’algorithme en boucle utilise une <strong>pile</strong> (Last In, First Out — LIFO) :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INITIALISER pile avec [Racine]
+TANT QUE pile non vide :
+    node ← DÉPILER (pop) le sommet de la pile
+    VISITER node
+    POUR chaque enfant de node (dans l'ordre que vous choisissez) :
+        EMPILER (push) l'enfant
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Simulez <strong>pas à pas</strong> l’algorithme DFS sur l’arbre de la Partie A, en visant le parcours <strong>gauche-droite</strong>.<br />
+Pour obtenir DFS-GD avec une pile, réfléchissez dans quel ordre empiler les enfants (indice : pour que l’enfant gauche soit dépilé en premier, il doit être au sommet de la pile).</p>
+<p>Remplissez le tableau suivant (ajoutez les lignes nécessaires) :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Itération</p></th>
+<th class="head"><p>Nœud dépilé</p></th>
+<th class="head"><p>Nœuds empilés</p></th>
+<th class="head"><p>Contenu de la pile après (sommet à droite)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>R</p></td>
+<td><p>B, A</p></td>
+<td><p>[B, A]</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>A</p></td>
+<td><p>D, C</p></td>
+<td><p>[B, D, C]</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>À noter :</strong> relevez le contenu exact de la pile <strong>après l’itération 3</strong>. Vous en aurez besoin dans le formulaire.</p>
+</div></blockquote>
+</li>
+<li><p>Refaites la simulation pour <strong>DFS droite-gauche</strong>. Quelle est la seule modification à apporter à l’ordre d’empilement ?</p></li>
+</ol>
+</section>
+<section id="b-2-bfs-avec-une-file">
+<h4>B.2 BFS avec une File<a class="headerlink" href="#b-2-bfs-avec-une-file" title="Link to this heading"></a></h4>
+<p>L’algorithme en boucle utilise une <strong>file</strong> (First In, First Out — FIFO) :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>INITIALISER file avec [Racine]
+TANT QUE file non vide :
+    node ← DÉFILER (dequeue) l'élément en tête
+    VISITER node
+    POUR chaque enfant de node (dans l'ordre que vous choisissez) :
+        ENFILER (enqueue) l'enfant en queue
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p>Simulez <strong>pas à pas</strong> ce BFS-GD sur l’arbre de la Partie A.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Itération</p></th>
+<th class="head"><p>Nœud défilé</p></th>
+<th class="head"><p>Nœuds enfilés</p></th>
+<th class="head"><p>Contenu de la file après (tête à gauche)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>R</p></td>
+<td><p>A, B</p></td>
+<td><p>[A, B]</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>A</p></td>
+<td><p>C, D</p></td>
+<td><p>[B, C, D]</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>?</p></td>
+<td><p>—</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>À noter :</strong> relevez le contenu exact de la file <strong>après l’itération 2</strong>. Vous en aurez besoin dans le formulaire.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="b-3-pseudo-code-general-et-analyse">
+<h4>B.3 Pseudo-code général et analyse<a class="headerlink" href="#b-3-pseudo-code-general-et-analyse" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Écrivez un <strong>pseudo-code unique</strong> qui produit soit un DFS soit un BFS selon la structure de données utilisée. Identifiez la seule ligne qui change entre les deux.</p></li>
+<li><p>Comment modifier ce pseudo-code pour contrôler l’ordre gauche-droite vs droite-gauche <strong>avec le moins d’effort possible</strong> (une seule ligne, sans <code class="docutils literal notranslate"><span class="pre">if</span></code>) ?</p></li>
+<li><p>Que se passerait-il si on ajoutait les nœuds <strong>en tête</strong> de la file (au lieu de la queue) ? Quel parcours obtiendrait-on ?</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="partie-c-implementation-en-python-ou-r">
+<h3>Partie C — Implémentation en Python ou R<a class="headerlink" href="#partie-c-implementation-en-python-ou-r" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> traduire le pseudo-code de la Partie B en code exécutable et factoriser dans une fonction générale.</p>
+<section id="c-1-representation-de-l-arbre">
+<h4>C.1 Représentation de l’arbre<a class="headerlink" href="#c-1-representation-de-l-arbre" title="Link to this heading"></a></h4>
+<p>Représentez l’arbre de la Partie A comme un dictionnaire (Python) ou une liste nommée (R) :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python — exemple de structure (à compléter ou adapter)</span>
+<span class="n">tree</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'R'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">],</span>
+    <span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'C'</span><span class="p">,</span> <span class="s1">'D'</span><span class="p">],</span>
+    <span class="s1">'B'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'E'</span><span class="p">],</span>
+    <span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'F'</span><span class="p">],</span>
+    <span class="s1">'D'</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">'E'</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="s1">'F'</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="c-2-fonctions-dfs-et-bfs-en-boucle">
+<h4>C.2 Fonctions DFS et BFS en boucle<a class="headerlink" href="#c-2-fonctions-dfs-et-bfs-en-boucle" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Écrivez une fonction <code class="docutils literal notranslate"><span class="pre">dfs_loop(tree,</span> <span class="pre">root,</span> <span class="pre">left_to_right=True)</span></code> qui utilise une pile et retourne la liste des nœuds visités dans l’ordre.</p></li>
+<li><p>Écrivez une fonction <code class="docutils literal notranslate"><span class="pre">bfs_loop(tree,</span> <span class="pre">root,</span> <span class="pre">left_to_right=True)</span></code> qui utilise une file (<code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> en Python, ou équivalent) et retourne la liste des nœuds visités.</p></li>
+<li><p>Vérifiez que les quatre parcours (DFS-GD, DFS-DG, BFS-GD, BFS-DG) correspondent exactement à vos résultats papier de la Partie A.</p></li>
+</ol>
+</section>
+<section id="c-3-fonction-generale-sans-if">
+<h4>C.3 Fonction générale sans <code class="docutils literal notranslate"><span class="pre">if</span></code><a class="headerlink" href="#c-3-fonction-generale-sans-if" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Écrivez une fonction <code class="docutils literal notranslate"><span class="pre">traverse(tree,</span> <span class="pre">root,</span> <span class="pre">use_queue=False,</span> <span class="pre">left_to_right=True)</span></code> qui implémente <strong>à la fois</strong> DFS et BFS <strong>sans aucun <code class="docutils literal notranslate"><span class="pre">if</span></code></strong> sur le type de parcours. Le seul paramètre qui différencie les deux est la méthode d’extraction de l’élément suivant.</p>
+<blockquote>
+<div><p><strong>Indice :</strong> <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> supporte <code class="docutils literal notranslate"><span class="pre">pop()</span></code> (fin, LIFO) et <code class="docutils literal notranslate"><span class="pre">popleft()</span></code> (début, FIFO). Stockez la méthode d’extraction dans une variable avant la boucle.</p>
+</div></blockquote>
+</li>
+<li><p>Réécrivez <code class="docutils literal notranslate"><span class="pre">dfs_loop</span></code> et <code class="docutils literal notranslate"><span class="pre">bfs_loop</span></code> en appelant <code class="docutils literal notranslate"><span class="pre">traverse</span></code>, sans dupliquer de logique.</p></li>
+<li><p>Ajoutez un paramètre <code class="docutils literal notranslate"><span class="pre">left_to_right</span></code> à <code class="docutils literal notranslate"><span class="pre">traverse</span></code> et montrez comment il change l’ordre des enfants ajoutés, sans <code class="docutils literal notranslate"><span class="pre">if</span></code> dans la boucle (une ligne suffit avec <code class="docutils literal notranslate"><span class="pre">reversed()</span></code> ou le slicing <code class="docutils literal notranslate"><span class="pre">[::-1]</span></code>).</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="partie-d-fonctions-recursives-et-dfs-recursif">
+<h3>Partie D — Fonctions récursives et DFS récursif<a class="headerlink" href="#partie-d-fonctions-recursives-et-dfs-recursif" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> comprendre la récursion à travers des exemples classiques, puis implémenter le DFS récursif et observer la pile d’exécution.</p>
+<section id="d-1-decouverte-de-la-recursion">
+<h4>D.1 Découverte de la récursion<a class="headerlink" href="#d-1-decouverte-de-la-recursion" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Copiez les deux fonctions suivantes dans votre environnement :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorielle</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Base case</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1"># Cas récursif</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorielle</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Base case</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="c1"># Cas récursif</span>
+    <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Sur chaque fonction, identifiez et annotez :</p>
+<ul class="simple">
+<li><p>le ou les <strong>cas de base</strong> (<em>base case</em>) : la condition qui arrête la récursion ;</p></li>
+<li><p>le <strong>cas récursif</strong> : l’appel à la fonction elle-même avec des paramètres plus petits ;</p></li>
+<li><p>la <strong>valeur retournée</strong> à chaque niveau.</p></li>
+</ul>
+</li>
+<li><p>Exécutez <code class="docutils literal notranslate"><span class="pre">factorielle(4)</span></code> et <code class="docutils literal notranslate"><span class="pre">fibonacci(5)</span></code>. Pour chacune, <strong>tracez à la main</strong> (ou avec un outil de débogage) la <strong>pile des appels</strong> (<em>call stack</em>) : dessinez l’empilement et le dépliement des appels récursifs.</p></li>
+<li><p>Exécutez en Python le code suivant pour visualiser les appels récursifs de <code class="docutils literal notranslate"><span class="pre">factorielle</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">factorielle_trace</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">profondeur</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  "</span> <span class="o">*</span> <span class="n">profondeur</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"factorielle(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">) appelée"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"  "</span> <span class="o">*</span> <span class="n">profondeur</span> <span class="o">+</span> <span class="s2">"→ retourne 1 (base case)"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="n">resultat</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorielle_trace</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">profondeur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"  "</span> <span class="o">*</span> <span class="n">profondeur</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">"→ retourne </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> × ... = </span><span class="si">{</span><span class="n">resultat</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resultat</span>
+
+<span class="n">factorielle_trace</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Observez la sortie. Qu’est-ce que la profondeur d’indentation représente ?</p>
+</li>
+</ol>
+</section>
+<section id="d-2-dfs-recursif">
+<h4>D.2 DFS récursif<a class="headerlink" href="#d-2-dfs-recursif" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Écrivez la fonction <code class="docutils literal notranslate"><span class="pre">dfs_recursive(tree,</span> <span class="pre">node,</span> <span class="pre">visited=None)</span></code> qui parcourt l’arbre en DFS-GD de façon récursive. Elle doit retourner la liste des nœuds visités.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs_recursive</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">visited</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">visited</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">visited</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># À compléter : visiter node, puis appeler récursivement sur chaque enfant</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">visited</span>
+</pre></div>
+</div>
+</li>
+<li><p>Ajoutez un paramètre <code class="docutils literal notranslate"><span class="pre">count</span></code> (ou une variable dans une liste pour contourner la portée de Python) qui incrémente à chaque appel récursif. Affichez le nombre total de nœuds visités.</p></li>
+<li><p>Vérifiez que le résultat de <code class="docutils literal notranslate"><span class="pre">dfs_recursive</span></code> correspond au résultat de <code class="docutils literal notranslate"><span class="pre">dfs_loop</span></code> pour le même arbre.</p></li>
+<li><p><strong>Question de réflexion :</strong> la pile d’appels du système (gérée par Python) joue le même rôle que la pile explicite de la Partie B. Expliquez cette correspondance en une ou deux phrases.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="partie-e-du-parcours-au-treillis-des-itemsets">
+<h3>Partie E — Du parcours au treillis des itemsets<a class="headerlink" href="#partie-e-du-parcours-au-treillis-des-itemsets" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> relier les parcours d’arbre à la structure combinatoire qui sous-tend l’extraction d’itemsets fréquents.</p>
+<section id="e-1-generer-le-treillis-sur-papier">
+<h4>E.1 Générer le treillis sur papier<a class="headerlink" href="#e-1-generer-le-treillis-sur-papier" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Prenez un alphabet de <strong>6 éléments</strong> : Σ = {a, b, c, d, e, f}.</p></li>
+<li><p><strong>Sur papier</strong>, générez le <strong>treillis de tous les sous-ensembles</strong> (<em>power set lattice</em>) de Σ. Organisez-les par <strong>niveau</strong> (taille du sous-ensemble : 0, 1, 2, …, 6). Reliez chaque sous-ensemble à ses enfants immédiats (les sous-ensembles qui ajoutent exactement un élément).</p>
+<blockquote>
+<div><p><strong>Conseil :</strong> commencez par le sous-ensemble vide {} au niveau 0, puis listez tous les singletons au niveau 1, toutes les paires au niveau 2, etc. Utilisez un ordre alphabétique cohérent dans chaque niveau.</p>
+</div></blockquote>
+</li>
+<li><p>Comptez le nombre d’éléments à chaque niveau et remplissez le tableau :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Niveau</p></th>
+<th class="head"><p>Taille des sous-ensembles</p></th>
+<th class="head"><p>Nombre d’éléments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>5</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>6</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td><p></p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>Questions d’analyse :</strong>
+a. Combien y a-t-il d’éléments en tout dans le treillis ?
+b. Quel niveau contient le plus d’éléments ? Y a-t-il un autre niveau avec exactement le même nombre ?
+c. Les nombres d’éléments à chaque niveau vous rappellent-ils quelque chose vu en cours de mathématiques ? Nommez la structure mathématique ou la formule correspondante (indice : pensez aux combinaisons C(n, k)).</p></li>
+</ol>
+</section>
+<section id="e-2-elements-aux-positions-i-et-j-dans-le-treillis-ordonne-bfs">
+<h4>E.2 Éléments aux positions i et j dans le treillis ordonné BFS<a class="headerlink" href="#e-2-elements-aux-positions-i-et-j-dans-le-treillis-ordonne-bfs" title="Link to this heading"></a></h4>
+<p>En supposant que vous listiez les éléments du treillis <strong>niveau par niveau</strong> (comme en BFS), en respectant l’ordre alphabétique au sein de chaque niveau :</p>
+<ol class="arabic">
+<li><p>Quel est le 8e élément listé (en comptant à partir de 1) ?</p></li>
+<li><p>Quel est le 23e élément listé ?</p>
+<blockquote>
+<div><p><strong>À vérifier avant de continuer :</strong> le 8e élément doit être {a, b} et le 23e doit être le premier itemset de taille 3 dans l’ordre alphabétique.</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="e-3-representer-le-treillis-comme-un-arbre-de-parcours">
+<h4>E.3 Représenter le treillis comme un arbre de parcours<a class="headerlink" href="#e-3-representer-le-treillis-comme-un-arbre-de-parcours" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Le treillis n’est pas un arbre (un sous-ensemble peut avoir plusieurs parents). Pour le parcourir comme un arbre avec DFS sans visiter deux fois le même élément, utilisez l’<strong>heuristique d’ordre</strong> : depuis un nœud courant {x₁, x₂, …, xₖ}, n’étendre qu’avec des éléments d’indice strictement supérieur au dernier élément xₖ (en ordre alphabétique).</p></li>
+<li><p>Tracez le début de cet arbre DFS sur papier, en partant de la racine {} et en montrant au moins 3 niveaux.</p></li>
+<li><p>Listez les 15 premiers éléments dans l’ordre DFS-GD avec heuristique d’ordre :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Position</p></th>
+<th class="head"><p>Itemset</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>{}</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>{a}</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>{a, b}</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>{a, b, c}</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>{a, b, c, d}</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>{a, b, c, d, e}</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>À vérifier :</strong> la position 7 doit être {a, b, c, d, e, f} et la position 12 doit être {a, b, d}.</p>
+</div></blockquote>
+</li>
+<li><p>Quel est le 20e élément visité en DFS-GD avec heuristique d’ordre ?</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="partie-f-explorer-le-treillis-avec-le-dfs-naif-vs-heuristique-d-ordre">
+<h3>Partie F — Explorer le treillis avec le DFS : naïf vs heuristique d’ordre<a class="headerlink" href="#partie-f-explorer-le-treillis-avec-le-dfs-naif-vs-heuristique-d-ordre" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> implémenter deux versions du DFS sur le treillis et mesurer l’impact de l’heuristique d’ordre sur le nombre de nœuds visités et le temps d’exécution.</p>
+<section id="f-1-version-naive">
+<h4>F.1 Version naïve<a class="headerlink" href="#f-1-version-naive" title="Link to this heading"></a></h4>
+<p>La version naïve étend le nœud courant avec <strong>n’importe quel</strong> élément de l’alphabet qui n’est pas encore dans l’itemset courant, sans contrainte d’ordre. Cela conduit à visiter le même sous-ensemble plusieurs fois (via des chemins différents).</p>
+<ol class="arabic">
+<li><p>Implémentez la fonction récursive <code class="docutils literal notranslate"><span class="pre">dfs_naive(alphabet,</span> <span class="pre">current,</span> <span class="pre">all_itemsets,</span> <span class="pre">counter)</span></code> qui :</p>
+<ul class="simple">
+<li><p>ajoute <code class="docutils literal notranslate"><span class="pre">frozenset(current)</span></code> à <code class="docutils literal notranslate"><span class="pre">all_itemsets</span></code> ;</p></li>
+<li><p>incrémente <code class="docutils literal notranslate"><span class="pre">counter[0]</span></code> (ou un compteur mutable) ;</p></li>
+<li><p>pour chaque item de <code class="docutils literal notranslate"><span class="pre">alphabet</span></code> absent de <code class="docutils literal notranslate"><span class="pre">current</span></code>, s’appelle récursivement.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs_naive</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">all_itemsets</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+    <span class="n">all_itemsets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+    <span class="n">counter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">dfs_naive</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">current</span> <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">],</span> <span class="n">all_itemsets</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Exécutez pour <code class="docutils literal notranslate"><span class="pre">alphabet</span> <span class="pre">=</span> <span class="pre">['a',</span> <span class="pre">'b',</span> <span class="pre">'c',</span> <span class="pre">'d',</span> <span class="pre">'e',</span> <span class="pre">'f']</span></code>. Combien de nœuds sont visités ? Combien d’itemsets distincts sont générés (dédoublonnés) ?</p></li>
+</ol>
+</section>
+<section id="f-2-version-avec-heuristique-d-ordre">
+<h4>F.2 Version avec heuristique d’ordre<a class="headerlink" href="#f-2-version-avec-heuristique-d-ordre" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Implémentez <code class="docutils literal notranslate"><span class="pre">dfs_ordered(alphabet,</span> <span class="pre">current,</span> <span class="pre">last_idx,</span> <span class="pre">all_itemsets,</span> <span class="pre">counter)</span></code> qui n’étend qu’avec des éléments d’indice strictement supérieur à <code class="docutils literal notranslate"><span class="pre">last_idx</span></code> dans l’alphabet :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs_ordered</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">current</span><span class="p">,</span> <span class="n">last_idx</span><span class="p">,</span> <span class="n">all_itemsets</span><span class="p">,</span> <span class="n">counter</span><span class="p">):</span>
+    <span class="n">all_itemsets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+    <span class="n">counter</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">last_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+        <span class="n">dfs_ordered</span><span class="p">(</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">current</span> <span class="o">+</span> <span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">i</span><span class="p">,</span> <span class="n">all_itemsets</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Exécutez pour le même alphabet. Combien de nœuds sont visités ?</p></li>
+</ol>
+</section>
+<section id="f-3-comparaison-experimentale">
+<h4>F.3 Comparaison expérimentale<a class="headerlink" href="#f-3-comparaison-experimentale" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Mesurez le <strong>nombre de nœuds visités</strong> et le <strong>temps d’exécution</strong> des deux versions pour des tailles d’alphabet croissantes. Commencez à n = 5, augmentez jusqu’à atteindre un temps d’exécution d’<strong>au moins 1 minute</strong> pour la version naïve. Fixez un <strong>timeout de 10 minutes</strong> : si une exécution dépasse ce seuil, arrêtez-la et notez “timeout” dans vos mesures — c’est un résultat à rapporter.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>n (taille alphabet)</p></th>
+<th class="head"><p>Nœuds naïf</p></th>
+<th class="head"><p>Temps naïf (s)</p></th>
+<th class="head"><p>Nœuds ordonné</p></th>
+<th class="head"><p>Temps ordonné (s)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+<td><p>?</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>Conseil :</strong> utilisez <code class="docutils literal notranslate"><span class="pre">time.perf_counter()</span></code> en Python ou <code class="docutils literal notranslate"><span class="pre">proc.time()</span></code> en R pour mesurer le temps. Répétez chaque mesure 3 fois et retenez la médiane.</p>
+</div></blockquote>
+</li>
+<li><p>Tracez deux graphiques (en échelle log si nécessaire) :</p>
+<ul class="simple">
+<li><p>Nombre de nœuds visités en fonction de n (naïf vs ordonné).</p></li>
+<li><p>Temps d’exécution en fonction de n (naïf vs ordonné).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="f-4-justification-theorique">
+<h4>F.4 Justification théorique<a class="headerlink" href="#f-4-justification-theorique" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Pour la version <strong>naïve</strong> : exprimez le nombre total de nœuds visités en fonction de n. Ce nombre inclut les visites redondantes (même sous-ensemble atteint par plusieurs chemins). Donnez la formule exacte, puis calculez-la pour n = 6.</p>
+<blockquote>
+<div><p><strong>Indice :</strong> à la profondeur k dans l’arbre naïf, le nombre de nœuds est n × (n–1) × … × (n–k+1) = P(n, k). Sommez sur tous les niveaux.</p>
+</div></blockquote>
+</li>
+<li><p>Pour la version <strong>avec heuristique d’ordre</strong> : exprimez le nombre total de nœuds visités en fonction de n. Chaque sous-ensemble est visité exactement une fois.</p>
+<blockquote>
+<div><p><strong>Indice :</strong> le nombre de sous-ensembles de taille k est C(n, k). Sommez sur tous les niveaux.</p>
+</div></blockquote>
+</li>
+<li><p>Vérifiez que vos formules correspondent aux valeurs mesurées expérimentalement.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="partie-g-algorithme-apriori-version-dfs-et-version-bfs">
+<h3>Partie G — Algorithme Apriori : version DFS et version BFS<a class="headerlink" href="#partie-g-algorithme-apriori-version-dfs-et-version-bfs" title="Link to this heading"></a></h3>
+<p><strong>Objectif :</strong> implémenter Apriori dans deux variantes (DFS et BFS), comparer leurs performances, et confronter les résultats à des implémentations de référence.</p>
+<section id="g-1-donnees">
+<h4>G.1 Données<a class="headerlink" href="#g-1-donnees" title="Link to this heading"></a></h4>
+<p>Utilisez le <strong>jeu de données retail</strong> de SPMF (<a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php">https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php</a>). Lisez le fichier et chargez-le en Python ou R comme une liste de sets (ensembles d’entiers).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_transactions</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">transactions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+            <span class="n">transactions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">transactions</span>
+</pre></div>
+</div>
+</section>
+<section id="g-2-apriori-dfs">
+<h4>G.2 Apriori DFS<a class="headerlink" href="#g-2-apriori-dfs" title="Link to this heading"></a></h4>
+<p>L’idée : partir de la racine (ensemble vide) et étendre en DFS avec heuristique d’ordre. À chaque nœud, calculer le support de l’itemset courant ; si ce support est inférieur à <code class="docutils literal notranslate"><span class="pre">min_support</span></code>, élaguer la branche entière (propriété antimonotone d’Apriori : si un itemset est non-fréquent, tous ses sur-ensembles le sont aussi).</p>
+<ol class="arabic">
+<li><p>Implémentez <code class="docutils literal notranslate"><span class="pre">apriori_dfs(transactions,</span> <span class="pre">alphabet,</span> <span class="pre">min_support)</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">apriori_dfs</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">min_support</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+    <span class="n">frequent</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nodes_visited</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">support</span><span class="p">(</span><span class="n">itemset</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transactions</span> <span class="k">if</span> <span class="n">itemset</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">last_idx</span><span class="p">):</span>
+        <span class="n">nodes_visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">sup</span> <span class="o">=</span> <span class="n">support</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">current</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sup</span> <span class="o">&lt;</span> <span class="n">min_support</span><span class="p">:</span>
+            <span class="k">return</span>  <span class="c1"># élagage</span>
+        <span class="k">if</span> <span class="n">current</span><span class="p">:</span>  <span class="c1"># ne pas ajouter l'ensemble vide</span>
+            <span class="n">frequent</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">frozenset</span><span class="p">(</span><span class="n">current</span><span class="p">),</span> <span class="n">sup</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">last_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)):</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">current</span> <span class="o">+</span> <span class="p">[</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">i</span><span class="p">)</span>
+
+    <span class="n">dfs</span><span class="p">([],</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">frequent</span><span class="p">,</span> <span class="n">nodes_visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Testez sur un petit jeu de données (par exemple les 5 premiers items distincts de retail) avec <code class="docutils literal notranslate"><span class="pre">min_support</span> <span class="pre">=</span> <span class="pre">0.5</span></code>.</p></li>
+</ol>
+</section>
+<section id="g-3-apriori-bfs-niveau-par-niveau">
+<h4>G.3 Apriori BFS (niveau par niveau)<a class="headerlink" href="#g-3-apriori-bfs-niveau-par-niveau" title="Link to this heading"></a></h4>
+<p>La version BFS explore le treillis niveau par niveau : d’abord tous les 1-itemsets fréquents, puis les 2-itemsets, etc. Les candidats de niveau k+1 sont générés à partir des k-itemsets fréquents.</p>
+<ol class="arabic">
+<li><p>Implémentez <code class="docutils literal notranslate"><span class="pre">apriori_bfs(transactions,</span> <span class="pre">alphabet,</span> <span class="pre">min_support)</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apriori_bfs</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">min_support</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+    <span class="n">frequent</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nodes_visited</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">support</span><span class="p">(</span><span class="n">itemset</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">transactions</span> <span class="k">if</span> <span class="n">itemset</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="o">/</span> <span class="n">n</span>
+
+    <span class="c1"># Niveau k = 1 : singletons</span>
+    <span class="n">current_frequent</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">nodes_visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">sup</span> <span class="o">=</span> <span class="n">support</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">item</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">sup</span> <span class="o">&gt;=</span> <span class="n">min_support</span><span class="p">:</span>
+            <span class="n">current_frequent</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">item</span><span class="p">]))</span>
+            <span class="n">frequent</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">item</span><span class="p">]),</span> <span class="n">sup</span><span class="p">))</span>
+
+    <span class="c1"># Niveaux suivants</span>
+    <span class="k">while</span> <span class="n">current_frequent</span><span class="p">:</span>
+        <span class="c1"># Générer les candidats de taille k+1 (jointure)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">current_frequent</span><span class="p">)))</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">current_frequent</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">current_frequent</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]:</span>
+                <span class="n">union</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">|</span> <span class="n">s2</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">union</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">candidates</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">union</span><span class="p">)</span>
+        <span class="n">next_frequent</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">candidate</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
+            <span class="n">nodes_visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">sup</span> <span class="o">=</span> <span class="n">support</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">sup</span> <span class="o">&gt;=</span> <span class="n">min_support</span><span class="p">:</span>
+                <span class="n">next_frequent</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidate</span><span class="p">)</span>
+                <span class="n">frequent</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">candidate</span><span class="p">,</span> <span class="n">sup</span><span class="p">))</span>
+        <span class="n">current_frequent</span> <span class="o">=</span> <span class="n">next_frequent</span>
+
+    <span class="k">return</span> <span class="n">frequent</span><span class="p">,</span> <span class="n">nodes_visited</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="g-4-comparaison-experimentale">
+<h4>G.4 Comparaison expérimentale<a class="headerlink" href="#g-4-comparaison-experimentale" title="Link to this heading"></a></h4>
+<blockquote>
+<div><p><strong>Conseil :</strong> pour faire des comparaisons expérimentales, l’idéal est d’avoir chaque algorithme qui peux se lancer indépendamment dans des scripts (e.g., apriori_dfs.py, apriori_bfs.py, …) chacun de vos scripts pouvant recevoir des paramètres pour s’éxécuter. Ensuite, vous avez un script <code class="docutils literal notranslate"><span class="pre">runner.py</span></code> qui recoit la liste des scripts à executer, et la liste d’éxécution pour chaque paramètre (e.g., liste des supports), ce script lance chaque script et mesure ce que vous voulez et écrit tout dans un fichier csv. Enfin vous avez un dernier script <code class="docutils literal notranslate"><span class="pre">compare.py</span></code> qui vous permet de comparer les résultats à partir du fichier csv et faire des plots si nécessaire.</p>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p><strong>Vérification de cohérence :</strong> pour plusieurs valeurs de <code class="docutils literal notranslate"><span class="pre">min_support</span></code> (par exemple 0.01, 0.05, 0.10, 0.20, 0.50), vérifiez que <code class="docutils literal notranslate"><span class="pre">apriori_dfs</span></code> et <code class="docutils literal notranslate"><span class="pre">apriori_bfs</span></code> retournent le <strong>même ensemble d’itemsets fréquents</strong> (même itemsets, mêmes supports). Expliquez comment vous avez effectué cette vérification.</p></li>
+<li><p><strong>Mesure de performance :</strong> mesurez le temps d’exécution des deux versions pour au moins 5 valeurs de support sur le jeu <em>retail</em>. Construisez un graphique : support minimum en abscisse, temps d’exécution en ordonnée (une courbe par version). Si une exécution dépasse 5 minutes, arrêtez-la et reportez “timeout”.</p></li>
+<li><p><strong>Comparaison avec les références :</strong></p>
+<ul class="simple">
+<li><p><strong>SPMF :</strong> exécutez Apriori de SPMF pour les mêmes valeurs de support. Notez le temps affiché par SPMF.</p></li>
+<li><p><strong>Bibliothèque Python ou R :</strong> trouvez et utilisez une bibliothèque dédiée (<code class="docutils literal notranslate"><span class="pre">mlxtend.frequent_patterns.apriori</span></code> en Python ou <code class="docutils literal notranslate"><span class="pre">arules::apriori</span></code> en R). Vérifiez que les résultats sont cohérents.</p></li>
+<li><p>Ajoutez ces deux références à votre graphique et commentez les différences de performance.</p></li>
+</ul>
+</li>
+<li><p><strong>Analyse :</strong> expliquez théoriquement pourquoi les performances diffèrent. Quels sont les avantages respectifs d’une exploration DFS vs BFS dans le contexte d’Apriori (mémoire, élagage, génération de candidats) ?</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="livrables">
+<h2>5. Livrables<a class="headerlink" href="#livrables" title="Link to this heading"></a></h2>
+<section id="le-rapport">
+<h3>5.1 Le rapport<a class="headerlink" href="#le-rapport" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Une page de contenu</strong> en <strong>anglais</strong> (format A4, police 11 pt minimum, marges raisonnables).</p></li>
+<li><p><strong>Jusqu’à 2 pages supplémentaires</strong> réservées <strong>uniquement</strong> aux références, tableaux, figures et captures d’écran (ou photos des travaux papier).</p></li>
+<li><p>Format <strong>PDF</strong>, nommé <code class="docutils literal notranslate"><span class="pre">NOM_Prenom_TD_DFS_BFS.pdf</span></code> (ou <code class="docutils literal notranslate"><span class="pre">NOM1_NOM2_TD_DFS_BFS.pdf</span></code> en binôme).</p></li>
+</ul>
+<p><strong>Ce qui est attendu dans la page de contenu :</strong></p>
+<ul class="simple">
+<li><p>Une brève analyse de la relation entre DFS/BFS et la structure en pile/file (2–3 phrases).</p></li>
+<li><p>Les formules théoriques du nombre de nœuds visités (naïf vs ordonné) et leur vérification expérimentale.</p></li>
+<li><p>L’analyse de la comparaison des temps d’exécution Apriori DFS vs BFS vs SPMF vs bibliothèque.</p></li>
+<li><p>Une réflexion sur l’impact de la stratégie d’exploration sur les performances en Data Mining.</p></li>
+</ul>
+<p>Soyez <strong>synthétique et précis</strong> : une page, c’est court. Privilégiez les observations chiffrées et les arguments. Les figures doivent être lisibles, avoir des axes titrés avec unités, et être référencées dans le texte.</p>
+<p><strong>Dans les pages annexes :</strong></p>
+<ul class="simple">
+<li><p>Les graphiques comparatifs des parties F et G.</p></li>
+<li><p>Les tableaux de mesures.</p></li>
+<li><p>Les photos des travaux papier (arbre Partie A, treillis Partie E).</p></li>
+<li><p>Les références bibliographiques.</p></li>
+</ul>
+</section>
+<section id="le-formulaire-de-remise">
+<h3>5.2 Le formulaire de remise<a class="headerlink" href="#le-formulaire-de-remise" title="Link to this heading"></a></h3>
+<p>La remise se fait <strong>exclusivement</strong> via le Google Form : <a class="reference external" href="https://forms.gle/eyVvZseD29Sarb7y9">https://forms.gle/eyVvZseD29Sarb7y9</a></p>
+<p>Le formulaire contient des questions précises portant sur chaque partie (ordres de traversée, contenus de pile/file, formules, valeurs expérimentales, code) ainsi qu’un champ pour téléverser le rapport PDF. Vos réponses doivent être cohérentes avec votre rapport.</p>
+</section>
+<section id="criteres-d-evaluation-indicatifs">
+<h3>5.3 Critères d’évaluation (indicatifs)<a class="headerlink" href="#criteres-d-evaluation-indicatifs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Exactitude des parcours papier et de la simulation pile/file</p></li>
+<li><p>Implémentation DFS et BFS en boucle, et fonction générale</p></li>
+<li><p>Implémentation récursive et correspondance avec la version itérative</p></li>
+<li><p>Analyse combinatoire du treillis et positions correctes</p></li>
+<li><p>Comparaison naïf vs ordonné : formules théoriques et graphiques</p></li>
+<li><p>Apriori DFS vs BFS : cohérence, performance, comparaison avec les références</p></li>
+<li><p>Qualité, concision et respect du format du rapport</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>6. Références<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>P. Fournier-Viger et al., <em>SPMF: An Open-Source Data Mining Library</em>. <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a></p></li>
+<li><p>R. Agrawal et R. Srikant, « Fast Algorithms for Mining Association Rules », <em>Proc. 20th VLDB</em>, 1994.</p></li>
+<li><p>Documentation <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> : <a class="reference external" href="https://rasbt.github.io/mlxtend/user_guide/frequent_patterns/apriori/">https://rasbt.github.io/mlxtend/user_guide/frequent_patterns/apriori/</a></p></li>
+<li><p>Documentation <code class="docutils literal notranslate"><span class="pre">arules</span></code> (R) : <a class="reference external" href="https://cran.r-project.org/web/packages/arules/index.html">https://cran.r-project.org/web/packages/arules/index.html</a></p></li>
+<li><p>T. H. Cormen et al., <em>Introduction to Algorithms</em>, MIT Press, 4e éd. — chapitres sur DFS et BFS.</p></li>
+<li><p>Jeux de données SPMF : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php">https://www.philippe-fournier-viger.com/spmf/index.php?link=datasets.php</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="td_spmf.html" class="btn btn-neutral float-left" title="Travaux Dirigés : se familiariser avec un outil de Data Mining" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../part6/index.html" class="btn btn-neutral float-right" title="QCM - Questionnaires d’auto-évaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

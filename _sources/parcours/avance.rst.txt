@@ -42,6 +42,7 @@ Travaux & évaluation
 ====================
 
 * :doc:`TD1 — Prise en main de SPMF (Frequent Itemset Mining) <../part4/td_spmf>` — découverte de SPMF, article fondateur d'Apriori, expérimentation temps/support
+* :doc:`TD2 — Parcours DFS et BFS <../part4/td_dfs_bfs>` — arbres, pile/file, récursion, treillis des itemsets, Apriori DFS vs BFS
 * :doc:`TP2 — Implémentation d'Apriori <../part4/index>`
 * :doc:`TP2bis — Implémentation de PrefixSpan <../part4/index>`
 * **Exposé pratique** — présentation d'un **algorithme avancé** à partir de son article scientifique (Partie 3) : présenter l'algorithme par l'exemple, un rapport de projet lié au papier, et le code.
