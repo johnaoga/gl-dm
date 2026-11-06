@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travaux Dirigés : explorer les séquences avec le principe « diviser pour régner » &mdash; DM 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/quiz.css?v=b9db772e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/quiz.js?v=3a330e9a"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="QCM - Questionnaires d’auto-évaluation" href="../part6/index.html" />
+    <link rel="prev" title="Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS" href="td_dfs_bfs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            DM
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Parcours</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/intermediaire.html">Parcours Intermédiaire (M2)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parcours/avance.html">Parcours Avancé (M2)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contenu du cours</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro/index.html">Organisation du cours</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part1/index.html">Partie 1 | Préliminaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part2/index.html">Partie 2 | Algorithmes de base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../part3/index.html">Partie 3 | Algorithmes avancés</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Partie 4 | Projet &amp; TPs</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="td_spmf.html">Travaux Dirigés : se familiariser avec un outil de Data Mining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="td_dfs_bfs.html">Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Travaux Dirigés : explorer les séquences avec le principe « diviser pour régner »</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contexte">1. Contexte</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#objectifs-pedagogiques">2. Objectifs pédagogiques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequis-techniques">3. Prérequis techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#travail-a-realiser">4. Travail à réaliser</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#partie-a-le-dfs-naif-explorer-toutes-les-possibilites">Partie A — Le DFS naïf : explorer « toutes les possibilités »</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-b-combien-de-possibilites-theorie-et-pratique">Partie B — Combien de possibilités ? Théorie et pratique</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-c-sous-sequences-plongements-support-prefixes-et-suffixes">Partie C — Sous-séquences, plongements, support, préfixes et suffixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-d-la-base-projetee-pas-a-pas">Partie D — La base projetée, pas à pas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#partie-e-assembler-prefixspan-puis-comparaison-avec-spmf">Partie E — Assembler : PrefixSpan, puis comparaison avec SPMF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#livrables">5. Livrables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#le-rapport-en-anglais">5.1 Le rapport (en anglais)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#le-formulaire-de-remise">5.2 Le formulaire de remise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#criteres-d-evaluation-indicatifs">5.3 Critères d’évaluation (indicatifs)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references">6. Références</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-analyse-descriptive">TP — Analyse descriptive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-k-means">TP — Implémentation de K-means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-d-apriori">TP — Implémentation d’Apriori</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#tp-implementation-de-prefixspan-parcours-avance">TP — Implémentation de PrefixSpan <em>(Parcours Avancé)</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#projet-final-data-mining">Projet final — Data Mining</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../part6/index.html">QCM - Questionnaires d’auto-évaluation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DM</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Partie 4 | Projet &amp; TPs</a></li>
+      <li class="breadcrumb-item active">Travaux Dirigés : explorer les séquences avec le principe « diviser pour régner »</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/part4/td_prefixspan.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="travaux-diriges-explorer-les-sequences-avec-le-principe-diviser-pour-regner">
+<span id="td-prefixspan"></span><h1>Travaux Dirigés : explorer les séquences avec le principe « diviser pour régner »<a class="headerlink" href="#travaux-diriges-explorer-les-sequences-avec-le-principe-diviser-pour-regner" title="Link to this heading"></a></h1>
+<p><strong>Cours :</strong> Data Mining
+<strong>Thème :</strong> Fouille de motifs séquentiels (<em>Sequential Pattern Mining</em>) — du parcours en profondeur naïf à l’algorithme PrefixSpan
+<strong>Modalité :</strong> individuel
+<strong>Durée indicative :</strong> 04 heures
+<strong>Date limite de remise :</strong> 06/11/2026 18h00
+<strong>Lien de remise (Google Form) :</strong> <a class="reference external" href="https://forms.gle/KZup99XqLkCEXbf49">https://forms.gle/KZup99XqLkCEXbf49</a></p>
+<hr class="docutils" />
+<section id="contexte">
+<h2>1. Contexte<a class="headerlink" href="#contexte" title="Link to this heading"></a></h2>
+<p>Dans une base de transactions, l’ordre des items n’a pas d’importance : {pain, lait} = {lait, pain}. Mais beaucoup de données sont <strong>ordonnées</strong> : les pages visitées par un internaute, les mots d’une phrase, les étapes d’un parcours de soins, les appels système d’un programme. On ne cherche alors plus des <em>ensembles</em> fréquents mais des <strong>séquences</strong> fréquentes, et l’espace de recherche change de nature : il devient <strong>infini</strong>.</p>
+<p>Comment explorer un espace infini ? Ce TD vous fait construire la réponse pas à pas. Vous partirez d’un parcours en profondeur (DFS) naïf qui ne s’arrête jamais, vous mesurerez l’explosion du nombre de séquences possibles, puis vous introduirez les notions de sous-séquence, de plongement, de support, de préfixe, de suffixe et de <strong>base projetée</strong>. Assemblées, ces briques forment <strong>PrefixSpan</strong> (Pei et al., 2001), un algorithme qui applique le principe <strong>« diviser pour régner »</strong> : l’ensemble des motifs est découpé selon leur préfixe, et chaque sous-problème est résolu sur une base de données plus petite. Vous comparerez enfin votre implémentation à celle de la bibliothèque <strong>SPMF</strong>.</p>
+</section>
+<section id="objectifs-pedagogiques">
+<h2>2. Objectifs pédagogiques<a class="headerlink" href="#objectifs-pedagogiques" title="Link to this heading"></a></h2>
+<p>À l’issue de ce TD, vous devez être capable de :</p>
+<ol class="arabic simple">
+<li><p><strong>Expliquer</strong> pourquoi un DFS naïf sur l’espace des séquences ne termine pas, et <strong>borner</strong> son exploration par une profondeur maximale.</p></li>
+<li><p><strong>Distinguer</strong> une séquence d’un ensemble (répétitions possibles, ordre significatif).</p></li>
+<li><p><strong>Calculer</strong> théoriquement le nombre de séquences de longueur au plus <em>d</em> sur un alphabet de <em>m</em> symboles, et <strong>vérifier</strong> ce calcul expérimentalement (comptage, temps, courbe).</p></li>
+<li><p><strong>Définir</strong> et <strong>implémenter</strong> les notions de sous-séquence, de plongement (<em>embedding</em>), de support, de préfixe et de suffixe.</p></li>
+<li><p><strong>Construire</strong> la base projetée d’une base de séquences par rapport à un préfixe, d’abord à la main puis par programme.</p></li>
+<li><p><strong>Assembler</strong> ces fonctions en une implémentation complète de PrefixSpan et en <strong>valider</strong> les résultats (force brute, SPMF).</p></li>
+<li><p><strong>Mener</strong> une comparaison expérimentale avec SPMF et en <strong>rendre compte</strong> de façon concise et chiffrée (rapport en anglais).</p></li>
+</ol>
+</section>
+<section id="prerequis-techniques">
+<h2>3. Prérequis techniques<a class="headerlink" href="#prerequis-techniques" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Python 3.9+</strong> avec <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> (et éventuellement <code class="docutils literal notranslate"><span class="pre">pandas</span></code>). Vérifiez avec <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">--version</span></code>.</p></li>
+<li><p><strong>Java 8+</strong> pour SPMF. Vérifiez avec <code class="docutils literal notranslate"><span class="pre">java</span> <span class="pre">-version</span></code>.</p></li>
+<li><p>Le fichier <strong><code class="docutils literal notranslate"><span class="pre">spmf.jar</span></code></strong> (dernière version), à télécharger depuis <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a> (page <em>Download</em>).</p></li>
+<li><p>Un éditeur / IDE, un terminal. Un notebook Jupyter est autorisé.</p></li>
+</ul>
+<p><strong>Convention utilisée dans tout le TD.</strong> Dans le cas général, une séquence est une liste ordonnée d’<em>itemsets</em> (par exemple ⟨(a b) c⟩). Pour se concentrer sur l’essentiel, <strong>chaque élément de nos séquences est un seul item</strong>. Une séquence s’écrit donc comme une chaîne ou une liste : <code class="docutils literal notranslate"><span class="pre">abcac</span></code> ou <code class="docutils literal notranslate"><span class="pre">['a','b','c','a','c']</span></code>. Les jeux de données réels choisis en Partie E respectent cette convention.</p>
+<p>Base de séquences jouet utilisée dans les Parties C à E (alphabet Σ = {a, b, c, d}) :</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>id</p></th>
+<th class="head"><p>séquence</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>S1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">b</span> <span class="pre">c</span> <span class="pre">a</span> <span class="pre">c</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>S2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">c</span> <span class="pre">b</span> <span class="pre">c</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>S3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">c</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>S4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">b</span> <span class="pre">d</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>S5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">c</span> <span class="pre">b</span> <span class="pre">a</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">DB</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s2">"abcac"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"acbc"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"babc"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"abd"</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="s2">"cba"</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="travail-a-realiser">
+<h2>4. Travail à réaliser<a class="headerlink" href="#travail-a-realiser" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Conseil : travaillez dans un seul fichier (ou notebook) que vous enrichirez de partie en partie, et notez au fur et à mesure les valeurs affichées par vos programmes. Le formulaire de remise vous demandera des valeurs <strong>exactes</strong> sur la base jouet et sur vos expériences.</p>
+</div></blockquote>
+<section id="partie-a-le-dfs-naif-explorer-toutes-les-possibilites">
+<h3>Partie A — Le DFS naïf : explorer « toutes les possibilités »<a class="headerlink" href="#partie-a-le-dfs-naif-explorer-toutes-les-possibilites" title="Link to this heading"></a></h3>
+<p>On veut énumérer toutes les séquences que l’on peut écrire avec l’alphabet Σ = {a, b, c}. Idée naïve : partir de la séquence vide et, à chaque appel, <strong>brancher sur chaque symbole</strong> possible.</p>
+<ol class="arabic">
+<li><p>Implémentez ce parcours en profondeur, sans aucune condition d’arrêt :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs_naif</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">nouvelle</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nouvelle</span><span class="p">))</span>
+        <span class="n">dfs_naif</span><span class="p">(</span><span class="n">nouvelle</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">)</span>
+
+<span class="n">dfs_naif</span><span class="p">([],</span> <span class="p">[</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"b"</span><span class="p">,</span> <span class="s2">"c"</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p>Exécutez-le et <strong>observez</strong> : quelles séquences sont affichées, dans quel ordre ? Comment le programme se termine-t-il (ou pas) ? Notez le message d’erreur éventuel et la longueur de la dernière séquence affichée.</p></li>
+<li><p>Répondez pour vous-même : la séquence <code class="docutils literal notranslate"><span class="pre">b</span></code> a-t-elle été affichée ? Pourquoi ? Dessinez les 3 premiers niveaux de l’arbre d’exploration et repérez la branche dans laquelle le DFS « tombe » sans jamais en sortir.</p>
+<blockquote>
+<div><p>L’arrêt que vous observez en Python vient d’une limite technique (<code class="docutils literal notranslate"><span class="pre">sys.getrecursionlimit()</span></code>), pas de l’algorithme. Une version itérative avec une pile ne s’arrêterait jamais (jusqu’à épuisement de la mémoire). Faites le lien avec la notion de <strong>branche infinie</strong>.</p>
+</div></blockquote>
+</li>
+<li><p>Ajoutez un paramètre de <strong>profondeur</strong> : la profondeur est <strong>incrémentée</strong> à chaque appel récursif, et l’exploration s’arrête lorsqu’elle atteint <code class="docutils literal notranslate"><span class="pre">d_max</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs_borne</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">,</span> <span class="n">profondeur</span><span class="p">,</span> <span class="n">d_max</span><span class="p">,</span> <span class="n">resultats</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Exécutez-le pour <code class="docutils literal notranslate"><span class="pre">d_max</span> <span class="pre">=</span> <span class="pre">2</span></code> puis <code class="docutils literal notranslate"><span class="pre">d_max</span> <span class="pre">=</span> <span class="pre">3</span></code> et listez les séquences obtenues.</p>
+</li>
+<li><p><strong>Qu’avons-nous énuméré ?</strong> Observez la liste obtenue pour <code class="docutils literal notranslate"><span class="pre">d_max</span> <span class="pre">=</span> <span class="pre">2</span></code> :</p>
+<ul class="simple">
+<li><p>Contient-elle <code class="docutils literal notranslate"><span class="pre">aa</span></code> ? <code class="docutils literal notranslate"><span class="pre">ab</span></code> <strong>et</strong> <code class="docutils literal notranslate"><span class="pre">ba</span></code> ? Ces deux dernières sont-elles « la même chose » ?</p></li>
+<li><p>Comparez avec les <strong>itemsets</strong> construits sur {a, b, c} : combien y a-t-il d’itemsets non vides possibles ? Ce nombre est-il fini ?</p></li>
+<li><p>Concluez : les objets énumérés sont des <strong>séquences</strong> parce que (i) les <strong>répétitions</strong> sont possibles et (ii) l’<strong>ordre</strong> compte (permuter les éléments donne un autre objet). C’est exactement ce qui rend l’espace infini.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="partie-b-combien-de-possibilites-theorie-et-pratique">
+<h3>Partie B — Combien de possibilités ? Théorie et pratique<a class="headerlink" href="#partie-b-combien-de-possibilites-theorie-et-pratique" title="Link to this heading"></a></h3>
+<p>Notez <em>m</em> = |Σ| la taille de l’alphabet et <em>d</em> la profondeur maximale.</p>
+<ol class="arabic">
+<li><p><strong>Théorie.</strong></p>
+<ul class="simple">
+<li><p>Combien existe-t-il de séquences de longueur <strong>exactement</strong> <em>k</em> ? Justifiez.</p></li>
+<li><p>Déduisez-en le nombre total N(m, d) de séquences non vides de longueur <strong>au plus</strong> <em>d</em> (somme géométrique, donnez une forme close).</p></li>
+<li><p>Calculez N(3, 2), N(3, 3) et N(3, 10) à la main ou à la calculatrice.</p></li>
+<li><p>Que vaut le rapport N(m, d+1) / N(m, d) quand <em>d</em> devient grand ? Qu’en déduisez-vous sur l’évolution du temps de calcul lorsque l’on augmente la profondeur de 1 ?</p></li>
+</ul>
+</li>
+<li><p><strong>Pratique.</strong> Écrivez deux versions de votre DFS borné :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compter(m,</span> <span class="pre">d)</span></code> qui <strong>compte</strong> les séquences sans les stocker ;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generer(m,</span> <span class="pre">d)</span></code> qui les <strong>stocke</strong> dans une liste.
+Vérifiez que vos comptes coïncident avec la formule pour les trois valeurs ci-dessus.</p></li>
+</ul>
+</li>
+<li><p><strong>Expérience.</strong> Faites varier <em>d</em> pour au moins trois tailles d’alphabet. Valeurs indicatives :</p>
+<ul class="simple">
+<li><p><em>m</em> = 2 : <em>d</em> = 1 … 20 ;</p></li>
+<li><p><em>m</em> = 3 : <em>d</em> = 1 … 14 ;</p></li>
+<li><p><em>m</em> = 4 : <em>d</em> = 1 … 11.</p></li>
+</ul>
+<p>Pour chaque couple (<em>m</em>, <em>d</em>), mesurez le <strong>nombre de séquences</strong> et le <strong>temps</strong> (avec <code class="docutils literal notranslate"><span class="pre">time.perf_counter()</span></code>, moyenne de 3 répétitions). Si une exécution dépasse ~60 s ou sature la mémoire (<code class="docutils literal notranslate"><span class="pre">generer</span></code>), arrêtez-vous là pour cet alphabet et <strong>notez-le</strong> : c’est un résultat.</p>
+</li>
+<li><p><strong>Courbes.</strong> Tracez le temps en fonction de <em>d</em> (une courbe par <em>m</em>), puis le nombre de séquences en fonction de <em>d</em>. Utilisez une <strong>échelle logarithmique</strong> sur l’axe des ordonnées : quelle forme ont les courbes, et pourquoi ? Superposez la courbe théorique N(m, d).</p></li>
+<li><p><strong>Analyse.</strong> Le temps est-il proportionnel au nombre de séquences ? Quelle différence observez-vous entre <code class="docutils literal notranslate"><span class="pre">compter</span></code> et <code class="docutils literal notranslate"><span class="pre">generer</span></code> (temps, mémoire) ?</p></li>
+<li><p><strong>Pour aller plus loin (facultatif).</strong> On peut aussi augmenter la profondeur <strong>progressivement</strong> (<em>d</em> = 1, puis 2, puis 3… en relançant le DFS à chaque fois : <em>iterative deepening</em>). Combien de séquences au total sont visitées pour atteindre la profondeur <em>D</em> ? Comparez avec un seul DFS à profondeur <em>D</em> (rapport approximatif en fonction de <em>m</em>).</p></li>
+</ol>
+<blockquote>
+<div><p>Retenez l’ordre de grandeur : même pour 3 symboles et des séquences de longueur 14, on dépasse plusieurs millions de candidats. Sur un vrai jeu de données (des centaines ou des milliers d’items différents), l’énumération exhaustive est hors de question. Il faut un moyen de <strong>ne pas explorer</strong> les branches inutiles.</p>
+</div></blockquote>
+</section>
+<section id="partie-c-sous-sequences-plongements-support-prefixes-et-suffixes">
+<h3>Partie C — Sous-séquences, plongements, support, préfixes et suffixes<a class="headerlink" href="#partie-c-sous-sequences-plongements-support-prefixes-et-suffixes" title="Link to this heading"></a></h3>
+<p>On travaille avec la séquence <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">c</span> <span class="pre">a</span> <span class="pre">c</span></code> (positions 0 à 4) puis avec la base jouet <code class="docutils literal notranslate"><span class="pre">DB</span></code> (Section 3).</p>
+<ol class="arabic">
+<li><p><strong>Sous-séquence (sur papier).</strong> Une séquence t = ⟨t₁ … t_k⟩ est une <strong>sous-séquence</strong> de s = ⟨s₀ … s_{n-1}⟩ (noté t ⊑ s) s’il existe des indices <strong>strictement croissants</strong> i₁ &lt; i₂ &lt; … &lt; i_k tels que s_{i_j} = t_j pour tout j. Les éléments n’ont pas besoin d’être consécutifs.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ac</span></code> est-elle une sous-séquence de s ? <code class="docutils literal notranslate"><span class="pre">ca</span></code> ? <code class="docutils literal notranslate"><span class="pre">cb</span></code> ? <code class="docutils literal notranslate"><span class="pre">aa</span></code> ? <code class="docutils literal notranslate"><span class="pre">abc</span></code> ?</p></li>
+<li><p>Quelle différence avec une <strong>sous-chaîne</strong> (<em>substring</em>) ?</p></li>
+</ul>
+</li>
+<li><p><strong>Plongement (sur papier).</strong> Le tuple d’indices (i₁, …, i_k) est appelé un <strong>plongement</strong> (<em>embedding</em>) de t dans s.</p>
+<ul class="simple">
+<li><p>Listez <strong>tous</strong> les plongements de <code class="docutils literal notranslate"><span class="pre">ac</span></code> dans s, puis de <code class="docutils literal notranslate"><span class="pre">abc</span></code> dans s.</p></li>
+<li><p>Une sous-séquence peut avoir plusieurs plongements : lequel a le plus petit dernier indice ?</p></li>
+</ul>
+</li>
+<li><p><strong>Implémentation.</strong> Écrivez :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_embedding</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Renvoie le plongement le plus à gauche (liste d'indices) de t dans s, ou None."""</span>
+</pre></div>
+</div>
+<p>Utilisez une stratégie <strong>gloutonne</strong> (pour chaque élément de t, prenez la première occurrence possible après la précédente). Testez sur les exemples de la question 2. Quelle est la complexité de votre fonction en fonction de |s| ?
+<em>(Facultatif)</em> écrivez <code class="docutils literal notranslate"><span class="pre">all_embeddings(t,</span> <span class="pre">s)</span></code> et vérifiez vos réponses de la question 2.</p>
+</li>
+<li><p><strong>Pourquoi le plongement le plus à gauche ?</strong> Montrez (en une ou deux phrases) que le plongement glouton a le plus petit dernier indice parmi tous les plongements. Vous en aurez besoin en Partie D.</p></li>
+<li><p><strong>Support.</strong> Le support d’une séquence t dans une base DB est le <strong>nombre de séquences de DB qui contiennent t</strong> comme sous-séquence. Une séquence compte <strong>une seule fois</strong>, même si t y a plusieurs plongements.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">support</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">db</span><span class="p">):</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Calculez le support de <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">d</span></code>, <code class="docutils literal notranslate"><span class="pre">ab</span></code>, <code class="docutils literal notranslate"><span class="pre">ba</span></code>, <code class="docutils literal notranslate"><span class="pre">ca</span></code>, <code class="docutils literal notranslate"><span class="pre">abc</span></code>, <code class="docutils literal notranslate"><span class="pre">aa</span></code> dans <code class="docutils literal notranslate"><span class="pre">DB</span></code>. Vérifiez d’abord à la main pour <code class="docutils literal notranslate"><span class="pre">ab</span></code> et <code class="docutils literal notranslate"><span class="pre">ba</span></code>.</p>
+</li>
+<li><p><strong>Anti-monotonie.</strong> Comparez support(<code class="docutils literal notranslate"><span class="pre">ab</span></code>) et support(<code class="docutils literal notranslate"><span class="pre">abc</span></code>), support(<code class="docutils literal notranslate"><span class="pre">b</span></code>) et support(<code class="docutils literal notranslate"><span class="pre">ba</span></code>). Énoncez la propriété générale reliant support(t) et support(t′) lorsque t ⊑ t′. Pourquoi permet-elle de couper des branches du DFS de la Partie A ?</p></li>
+<li><p><strong>Préfixe et suffixe.</strong> Un <strong>préfixe</strong> de s est formé de ses <em>k</em> premiers éléments ; le <strong>suffixe</strong> correspondant est formé des éléments restants.</p>
+<ul class="simple">
+<li><p>Listez tous les préfixes et tous les suffixes de s = <code class="docutils literal notranslate"><span class="pre">abcac</span></code> (y compris la séquence vide). Combien y en a-t-il ?</p></li>
+<li><p>Écrivez <code class="docutils literal notranslate"><span class="pre">prefixes(s)</span></code> et <code class="docutils literal notranslate"><span class="pre">suffixes(s)</span></code> (une ligne chacune avec le découpage de listes).</p></li>
+<li><p><strong>Lien avec les sous-séquences :</strong> pour une sous-séquence α de s, on appelle <strong>projection de s par rapport à α</strong> (notée s|α) le suffixe de s qui commence <strong>juste après le dernier indice du plongement le plus à gauche</strong> de α. Calculez à la main s|<code class="docutils literal notranslate"><span class="pre">a</span></code>, s|<code class="docutils literal notranslate"><span class="pre">ab</span></code>, s|<code class="docutils literal notranslate"><span class="pre">ac</span></code>, s|<code class="docutils literal notranslate"><span class="pre">ca</span></code>. Écrivez la fonction <code class="docutils literal notranslate"><span class="pre">project_seq(s,</span> <span class="pre">alpha)</span></code> en réutilisant <code class="docutils literal notranslate"><span class="pre">find_embedding</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="partie-d-la-base-projetee-pas-a-pas">
+<h3>Partie D — La base projetée, pas à pas<a class="headerlink" href="#partie-d-la-base-projetee-pas-a-pas" title="Link to this heading"></a></h3>
+<p>La <strong>base projetée</strong> de DB par rapport à un préfixe α, notée DB|α, est la collection des projections s|α pour toutes les séquences s de DB qui <strong>contiennent</strong> α.</p>
+<ol class="arabic">
+<li><p><strong>Sur papier d’abord.</strong> Avec la base jouet <code class="docutils literal notranslate"><span class="pre">DB</span></code> :</p>
+<ul class="simple">
+<li><p>Construisez DB|<code class="docutils literal notranslate"><span class="pre">a</span></code>, DB|<code class="docutils literal notranslate"><span class="pre">b</span></code>, DB|<code class="docutils literal notranslate"><span class="pre">c</span></code> et DB|<code class="docutils literal notranslate"><span class="pre">d</span></code> (une ligne par séquence de DB contenant le préfixe).</p></li>
+<li><p>Que se passe-t-il pour S5 = <code class="docutils literal notranslate"><span class="pre">cba</span></code> dans DB|<code class="docutils literal notranslate"><span class="pre">a</span></code> ? Le suffixe obtenu est vide : faut-il garder S5 pour calculer le <strong>support</strong> de <code class="docutils literal notranslate"><span class="pre">a</span></code> ? Et pour chercher les extensions de <code class="docutils literal notranslate"><span class="pre">a</span></code> ?</p></li>
+<li><p>Dans DB|<code class="docutils literal notranslate"><span class="pre">a</span></code>, comptez, pour chaque item x, le <strong>nombre de suffixes</strong> qui contiennent x. Comparez avec support(<code class="docutils literal notranslate"><span class="pre">ax</span></code>) calculé en Partie C : que constatez-vous ?</p></li>
+</ul>
+</li>
+<li><p><strong>Implémentation directe.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">project</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Base projetée DB|alpha : liste des suffixes s|alpha pour s contenant alpha."""</span>
+</pre></div>
+</div>
+<p>Vérifiez vos réponses de la question 1.</p>
+</li>
+<li><p><strong>Projection incrémentale.</strong> Calculez (DB|<code class="docutils literal notranslate"><span class="pre">a</span></code>)|<code class="docutils literal notranslate"><span class="pre">b</span></code> en projetant la base <strong>déjà projetée</strong> sur le seul item <code class="docutils literal notranslate"><span class="pre">b</span></code>, puis comparez avec DB|<code class="docutils literal notranslate"><span class="pre">ab</span></code>. Même chose avec (DB|<code class="docutils literal notranslate"><span class="pre">a</span></code>)|<code class="docutils literal notranslate"><span class="pre">c</span></code> et DB|<code class="docutils literal notranslate"><span class="pre">ac</span></code>. Que constatez-vous ? Pourquoi est-ce vrai (indice : plongement le plus à gauche, Partie C.4) ? Écrivez <code class="docutils literal notranslate"><span class="pre">project_item(db_proj,</span> <span class="pre">x)</span></code> qui projette sur <strong>un seul</strong> item.</p></li>
+<li><p><strong>Compter dans une base projetée.</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">count_items</span><span class="p">(</span><span class="n">db_proj</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Dictionnaire item -&gt; nombre de suffixes contenant l'item (chaque suffixe compte au plus une fois)."""</span>
+</pre></div>
+</div>
+<p>Appliquez-la à DB|<code class="docutils literal notranslate"><span class="pre">a</span></code> et DB|<code class="docutils literal notranslate"><span class="pre">ab</span></code>. Quelles séquences de longueur 2 commençant par <code class="docutils literal notranslate"><span class="pre">a</span></code>, et de longueur 3 commençant par <code class="docutils literal notranslate"><span class="pre">ab</span></code>, ont un support ≥ 2 ?</p>
+</li>
+<li><p><strong>Diviser pour régner.</strong> Expliquez en quelques phrases :</p>
+<ul class="simple">
+<li><p>pourquoi l’ensemble des motifs fréquents se <strong>partitionne</strong> selon leur premier item (motifs commençant par <code class="docutils literal notranslate"><span class="pre">a</span></code>, par <code class="docutils literal notranslate"><span class="pre">b</span></code>, …) ;</p></li>
+<li><p>pourquoi chaque partie peut être fouillée <strong>uniquement</strong> à partir de la base projetée correspondante ;</p></li>
+<li><p>pourquoi ces bases projetées sont <strong>plus petites</strong> que DB (nombre de séquences et longueur).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="partie-e-assembler-prefixspan-puis-comparaison-avec-spmf">
+<h3>Partie E — Assembler : PrefixSpan, puis comparaison avec SPMF<a class="headerlink" href="#partie-e-assembler-prefixspan-puis-comparaison-avec-spmf" title="Link to this heading"></a></h3>
+<section id="e-1-l-algorithme">
+<h4>E.1 — L’algorithme<a class="headerlink" href="#e-1-l-algorithme" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Assemblez vos fonctions en un DFS <strong>guidé par les données</strong> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prefixspan</span><span class="p">(</span><span class="n">db_proj</span><span class="p">,</span> <span class="n">minsup</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">resultats</span><span class="p">):</span>
+    <span class="c1"># 1. compter les items dans db_proj (count_items)</span>
+    <span class="c1"># 2. pour chaque item x fréquent (support &gt;= minsup), dans l'ordre :</span>
+    <span class="c1">#       - enregistrer prefix + [x] avec son support</span>
+    <span class="c1">#       - appeler récursivement prefixspan sur project_item(db_proj, x)</span>
+    <span class="o">...</span>
+
+<span class="n">resultats</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">prefixspan</span><span class="p">(</span><span class="n">DB</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[],</span> <span class="n">resultats</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ici <code class="docutils literal notranslate"><span class="pre">minsup</span></code> est un <strong>support absolu</strong> (nombre de séquences).</p>
+</li>
+<li><p>Exécutez-le sur la base jouet pour <code class="docutils literal notranslate"><span class="pre">minsup</span></code> = 1, 2, 3 et 4. Notez à chaque fois le <strong>nombre de motifs</strong> et la <strong>longueur maximale</strong> d’un motif. Recopiez la liste complète des motifs pour <code class="docutils literal notranslate"><span class="pre">minsup</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p></li>
+<li><p><strong>Validation par force brute.</strong> Combinez vos Parties A et C : générez toutes les séquences sur {a, b, c, d} de longueur ≤ 5 (la plus longue séquence de DB), calculez leur support, gardez celles de support ≥ <code class="docutils literal notranslate"><span class="pre">minsup</span></code>. Vérifiez par programme que vous obtenez <strong>exactement</strong> le même dictionnaire que PrefixSpan, pour <code class="docutils literal notranslate"><span class="pre">minsup</span></code> = 2 et 3.</p></li>
+<li><p><strong>Retour à la Partie A.</strong> Votre fonction <code class="docutils literal notranslate"><span class="pre">prefixspan</span></code> est un DFS, comme <code class="docutils literal notranslate"><span class="pre">dfs_naif</span></code>, mais <strong>sans</strong> paramètre de profondeur. Pourquoi termine-t-elle ? Donnez les deux raisons (ce qui limite la <strong>largeur</strong> de l’exploration, ce qui limite sa <strong>profondeur</strong>).</p></li>
+</ol>
+</section>
+<section id="e-2-des-donnees-reelles-au-format-spmf">
+<h4>E.2 — Des données réelles au format SPMF<a class="headerlink" href="#e-2-des-donnees-reelles-au-format-spmf" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Lisez la documentation PrefixSpan de SPMF : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php">https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php</a>. Repérez le format d’entrée (<code class="docutils literal notranslate"><span class="pre">-1</span></code> = fin d’itemset, <code class="docutils literal notranslate"><span class="pre">-2</span></code> = fin de séquence), le format de sortie (<code class="docutils literal notranslate"><span class="pre">#SUP:</span></code>), les paramètres optionnels et la commande en ligne :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>java<span class="w"> </span>-jar<span class="w"> </span>spmf.jar<span class="w"> </span>run<span class="w"> </span>PrefixSpan<span class="w"> </span>input.txt<span class="w"> </span>output.txt<span class="w"> </span><span class="m">40</span>%
+</pre></div>
+</div>
+</li>
+<li><p>Écrivez la base jouet au format SPMF dans <code class="docutils literal notranslate"><span class="pre">toy.txt</span></code> (codage a=1, b=2, c=3, d=4), par exemple la première ligne : <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-1</span> <span class="pre">2</span> <span class="pre">-1</span> <span class="pre">3</span> <span class="pre">-1</span> <span class="pre">1</span> <span class="pre">-1</span> <span class="pre">3</span> <span class="pre">-1</span> <span class="pre">-2</span></code>. Lancez SPMF avec <code class="docutils literal notranslate"><span class="pre">40%</span></code> (soit 2 séquences sur 5) et vérifiez que vous retrouvez <strong>les mêmes motifs et supports</strong> que votre implémentation.</p></li>
+<li><p>Écrivez <code class="docutils literal notranslate"><span class="pre">read_spmf(path)</span></code> qui lit un fichier de séquences SPMF en liste de listes d’entiers.</p>
+<blockquote>
+<div><p>Les fichiers peuvent commencer par des lignes de métadonnées (<code class="docutils literal notranslate"><span class="pre">&#64;CONVERTED_FROM_TEXT</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;ITEM=...</span></code>, etc.) : ignorez les lignes vides et celles commençant par <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code> ou <code class="docutils literal notranslate"><span class="pre">%</span></code>. Ajoutez une <strong>vérification</strong> qui lève une erreur si un itemset contient plus d’un item (notre implémentation ne gère que des items simples).</p>
+</div></blockquote>
+</li>
+<li><p>Téléchargez depuis la page des jeux de données (<a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/datasets.php">https://www.philippe-fournier-viger.com/spmf/datasets.php</a>) les bases <strong>SIGN</strong> (<code class="docutils literal notranslate"><span class="pre">SIGN.txt</span></code>, langue des signes) et <strong>LEVIATHAN</strong> (<code class="docutils literal notranslate"><span class="pre">LEVIATHAN.txt</span></code>, le livre de Hobbes, un mot = un item). Avec votre propre code, calculez et notez pour chacune : nombre de séquences, nombre d’items distincts, longueur moyenne et longueur maximale. Comparez avec les chiffres annoncés par SPMF.</p></li>
+</ol>
+</section>
+<section id="e-3-comparaison-de-performances-avec-spmf">
+<h4>E.3 — Comparaison de performances avec SPMF<a class="headerlink" href="#e-3-comparaison-de-performances-avec-spmf" title="Link to this heading"></a></h4>
+<ol class="arabic">
+<li><p>Écrivez un script qui, pour un jeu de données et une liste de valeurs de <code class="docutils literal notranslate"><span class="pre">minsup</span></code> (en %) :</p>
+<ul class="simple">
+<li><p>lance <strong>votre</strong> PrefixSpan et mesure le temps (sans compter la lecture du fichier, que vous mesurez à part) ;</p></li>
+<li><p>lance <strong>SPMF</strong> via <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> et mesure le temps total de l’appel, <strong>et</strong> relève le temps affiché par SPMF dans ses statistiques ;</p></li>
+<li><p>compare le <strong>nombre de motifs</strong> obtenus par les deux implémentations.</p></li>
+</ul>
+</li>
+<li><p><strong>Conversion du seuil.</strong> SPMF prend un pourcentage ; votre fonction prend un nombre de séquences. Choisissez une conversion (arrondi supérieur ? inférieur ?) et <strong>vérifiez</strong> qu’elle donne le même nombre de motifs que SPMF ; si ce n’est pas le cas, testez l’autre. Notez celle qui fonctionne.</p></li>
+<li><p>Valeurs indicatives (à adapter à votre machine ; partez d’un seuil élevé et descendez) :</p>
+<ul class="simple">
+<li><p><em>SIGN</em> : 70 %, 60 %, 50 %, 45 %, 40 %, 35 %, … ;</p></li>
+<li><p><em>LEVIATHAN</em> : 30 %, 20 %, 15 %, 10 %, 7 %, 5 %, ….</p></li>
+</ul>
+<p>Au moins <strong>5 valeurs par jeu</strong>, chaque mesure répétée <strong>3 fois</strong> (moyenne). Arrêtez de descendre dès que votre implémentation dépasse <strong>~5 minutes</strong> et mentionnez-le : c’est un résultat.</p>
+<blockquote>
+<div><p>Le nombre de motifs croît très vite quand le seuil baisse. Pour de très bas seuils, SPMF peut aussi écrire un fichier de sortie énorme : surveillez l’espace disque.</p>
+</div></blockquote>
+</li>
+<li><p>Tracez, pour chaque jeu de données, le <strong>temps</strong> en fonction de <code class="docutils literal notranslate"><span class="pre">minsup</span></code> (axe des abscisses décroissant de gauche à droite ou non, mais indiquez-le) avec une courbe pour votre implémentation et une pour SPMF (échelle log en ordonnée recommandée), et ajoutez le <strong>nombre de motifs</strong> (second axe ou second graphique).</p></li>
+<li><p><strong>Analyse.</strong> Calculez le <strong>facteur d’accélération</strong> SPMF / votre code pour chaque seuil. Est-il constant ? Quelle part du temps SPMF mesuré par <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> est due au démarrage de la JVM (comparez au temps interne de SPMF, surtout aux seuils élevés) ? Le temps suit-il le nombre de motifs ? Les deux jeux se comportent-ils de la même façon, et pourquoi (nombre d’items, longueur des séquences, densité) ?</p></li>
+<li><p><strong>Pour aller plus loin (facultatif).</strong> Votre <code class="docutils literal notranslate"><span class="pre">project_item</span></code> <strong>copie</strong> des suffixes. Implémentez une <strong>pseudo-projection</strong> : une base projetée est représentée par une liste de couples (indice de séquence, position de début) au lieu de copies. Mesurez l’effet sur le temps <strong>et</strong> sur la mémoire. Le résultat est-il celui que vous attendiez ? (Indice : en Python, le découpage de listes est exécuté en C.)</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="livrables">
+<h2>5. Livrables<a class="headerlink" href="#livrables" title="Link to this heading"></a></h2>
+<section id="le-rapport-en-anglais">
+<h3>5.1 Le rapport (en anglais)<a class="headerlink" href="#le-rapport-en-anglais" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Une page de contenu, rédigée en anglais</strong> (format A4, police 11 pt minimum, marges raisonnables).</p></li>
+<li><p><strong>Jusqu’à 2 pages supplémentaires</strong> réservées <strong>uniquement</strong> aux références, tableaux et figures.</p></li>
+<li><p>Format <strong>PDF</strong>, nommé <code class="docutils literal notranslate"><span class="pre">NOM_Prenom_TD_PrefixSpan.pdf</span></code> (ou <code class="docutils literal notranslate"><span class="pre">NOM1_NOM2_TD_PrefixSpan.pdf</span></code> en binôme).</p></li>
+</ul>
+<p><strong>Ce qui est attendu dans la page de contenu</strong> (à titre indicatif) :</p>
+<ul class="simple">
+<li><p>pourquoi le DFS naïf ne termine pas et ce qui fait de l’espace de recherche un espace de <strong>séquences</strong> (2–3 phrases) ;</p></li>
+<li><p>la formule N(m, d) et son accord (ou désaccord) avec vos mesures de la Partie B ;</p></li>
+<li><p>les définitions clés (sous-séquence, plongement, support, base projetée) illustrées sur <strong>un</strong> exemple de la base jouet ;</p></li>
+<li><p>en quoi PrefixSpan applique « diviser pour régner », et pourquoi il termine sans borne de profondeur ;</p></li>
+<li><p>comment vous avez validé votre implémentation (force brute, SPMF) ;</p></li>
+<li><p>l’analyse de la comparaison avec SPMF (facteur d’accélération, tendances, explication).</p></li>
+</ul>
+<p>Une page, c’est court : privilégiez les <strong>observations chiffrées</strong> et les arguments. Les figures doivent être lisibles, avoir des axes titrés avec unités, une légende, et être référencées dans le texte (« see Figure 1 »).</p>
+<p><strong>Dans les pages annexes :</strong></p>
+<ul class="simple">
+<li><p>Figure(s) Partie B : nombre de séquences et temps en fonction de <em>d</em> (échelle log), avec la courbe théorique ;</p></li>
+<li><p>Figure(s) Partie E : temps (votre code vs SPMF) et nombre de motifs en fonction de <code class="docutils literal notranslate"><span class="pre">minsup</span></code>, pour SIGN et LEVIATHAN ;</p></li>
+<li><p>un tableau des mesures (jeu, minsup, temps de votre code, temps SPMF interne, temps SPMF total, nombre de motifs) ;</p></li>
+<li><p>les caractéristiques de votre machine ;</p></li>
+<li><p>les références (au minimum : l’article PrefixSpan de Pei et al. et le site SPMF).</p></li>
+</ul>
+</section>
+<section id="le-formulaire-de-remise">
+<h3>5.2 Le formulaire de remise<a class="headerlink" href="#le-formulaire-de-remise" title="Link to this heading"></a></h3>
+<p>La remise se fait <strong>exclusivement</strong> via le Google Form : <a class="reference external" href="https://forms.gle/KZup99XqLkCEXbf49">https://forms.gle/KZup99XqLkCEXbf49</a></p>
+<p>Le formulaire contient des <strong>questions précises</strong> sur chaque partie (valeurs obtenues sur la base jouet, mesures, interprétations), un champ pour <strong>coller votre code</strong> (ou un lien vers un dépôt / notebook accessible) et un champ pour <strong>téléverser votre rapport PDF</strong>. Les réponses doivent être cohérentes avec votre rapport et avec ce que produit votre code.</p>
+</section>
+<section id="criteres-d-evaluation-indicatifs">
+<h3>5.3 Critères d’évaluation (indicatifs)<a class="headerlink" href="#criteres-d-evaluation-indicatifs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>compréhension du DFS naïf, de la borne de profondeur et de la notion de séquence</p></li>
+<li><p>formule, mesures, courbes et analyse</p></li>
+<li><p>sous-séquence, plongement, support, préfixe/suffixe (exactitude du code et des valeurs)</p></li>
+<li><p>base projetée (à la main et par programme), argument « diviser pour régner »</p></li>
+<li><p>PrefixSpan correct et validé (force brute + SPMF)</p></li>
+<li><p>expérimentation et analyse de la comparaison avec SPMF</p></li>
+<li><p>Rapport : clarté, concision, qualité de l’anglais et respect du format</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>6. Références<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>J. Pei, J. Han, B. Mortazavi-Asl, H. Pinto, Q. Chen, U. Dayal, M.-C. Hsu, « PrefixSpan: Mining Sequential Patterns Efficiently by Prefix-Projected Pattern Growth », <em>Proceedings of the 17th International Conference on Data Engineering (ICDE)</em>, 2001, p. 215–224.</p></li>
+<li><p>J. Pei, J. Han, B. Mortazavi-Asl, J. Wang, H. Pinto, Q. Chen, U. Dayal, M.-C. Hsu, « Mining Sequential Patterns by Pattern-Growth: The PrefixSpan Approach », <em>IEEE Transactions on Knowledge and Data Engineering</em>, 16(11), 2004, p. 1424–1440.</p></li>
+<li><p>R. Agrawal, R. Srikant, « Mining Sequential Patterns », <em>Proceedings of the 11th International Conference on Data Engineering (ICDE)</em>, 1995.</p></li>
+<li><p>P. Fournier-Viger, J. C.-W. Lin, R. U. Kiran, Y. S. Koh, R. Thomas, « A Survey of Sequential Pattern Mining », <em>Data Science and Pattern Recognition</em>, 1(1), 2017, p. 54–77.</p></li>
+<li><p>P. Fournier-Viger et al., « SPMF: A Java Open-Source Pattern Mining Library », <em>Journal of Machine Learning Research</em>, 15, 2014, p. 3389–3393. Site : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/">https://www.philippe-fournier-viger.com/spmf/</a></p></li>
+<li><p>Documentation SPMF — PrefixSpan : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php">https://www.philippe-fournier-viger.com/spmf/PrefixSpan.php</a></p></li>
+<li><p>Jeux de données SPMF : <a class="reference external" href="https://www.philippe-fournier-viger.com/spmf/datasets.php">https://www.philippe-fournier-viger.com/spmf/datasets.php</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="td_dfs_bfs.html" class="btn btn-neutral float-left" title="Travaux Dirigés : Exploration des espaces de possibilités pour le Data Mining — parcours DFS et BFS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../part6/index.html" class="btn btn-neutral float-right" title="QCM - Questionnaires d’auto-évaluation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, John Aoga.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
