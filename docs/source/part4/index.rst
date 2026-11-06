@@ -18,6 +18,7 @@ le tableau ci-dessous).
 
    td_spmf
    td_dfs_bfs
+   td_prefixspan
 
 .. list-table:: TD / TP par parcours
    :header-rows: 1
@@ -30,6 +31,9 @@ le tableau ci-dessous).
      - ✗
      - ✅
    * - :doc:`TD — Parcours DFS et BFS (treillis d'itemsets, Apriori DFS/BFS) <td_dfs_bfs>`
+     - ✗
+     - ✅
+   * - :doc:`TD — PrefixSpan : « diviser pour régner » sur les séquences <td_prefixspan>`
      - ✗
      - ✅
    * - TP — Analyse descriptive
